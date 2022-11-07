@@ -1,2 +1,2 @@
 # BadMouth
-An Edge Device for Bad Language and Bad Bitches
+An Edge Device for Bad Language
