@@ -11,7 +11,7 @@ import os
 
 
 
-def vocal_separation(file_path, Newfile_path):
+def vocal_separation(file_path, Newfile_path, Newfile_pathSpec):
     
     #############################################
     # Load an example with vocals.
@@ -65,9 +65,9 @@ def vocal_separation(file_path, Newfile_path):
     margin_i, margin_v = 2, 10
     power = 2
 
-    mask_i = librosa.util.softmask(S_filter,
-                                margin_i * (S_full - S_filter),
-                                power=power)
+    # mask_i = librosa.util.softmask(S_filter,
+    #                             margin_i * (S_full - S_filter),
+    #                             power=power)
 
     mask_v = librosa.util.softmask(S_full - S_filter,
                                 margin_v * S_filter,
@@ -77,7 +77,7 @@ def vocal_separation(file_path, Newfile_path):
     # to separate the components
 
     S_foreground = mask_v * S_full
-    S_background = mask_i * S_full
+    # S_background = mask_i * S_full
 
     ################### .WAV OUTPUT OF FOREGROUND #######
     D_foreground = S_foreground * phase
@@ -86,6 +86,11 @@ def vocal_separation(file_path, Newfile_path):
 
     sf.write(Newfile_path,Y_foreground,sr)
 
+    librosa.display.specshow(librosa.amplitude_to_db(S_foreground[:, idx], ref=np.max),
+                         y_axis='log', x_axis='time', sr=sr)
+    plt.title('Foreground')
+    plt.tight_layout()
+    plt.savefig(Newfile_pathSpec)
 
 
 PDIR = "audio" # folder where all audio folders are located 
@@ -99,6 +104,11 @@ for dir in words:
     newFolder = os.path.join(PDIR,FolderName) 
     os.mkdir(newFolder)
     
+    FolderNameSpec = dir + "__ForegroundSpec"
+    newFolderSpec = os.path.join(PDIR,FolderNameSpec) 
+    os.mkdir(newFolderSpec)
+    
+    
     DATADIR = os.path.join(PDIR,dir) 
     fileNum = 0
     for file in os.scandir(DATADIR):
@@ -107,8 +117,9 @@ for dir in words:
             FILEPATH = file.path
             NewfileName = dir + "__Foreground" + str(fileNum) +".wav"
             Newfile_path = os.path.join(newFolder,NewfileName) 
-            vocal_separation(file, Newfile_path)
-
-
-
-
+            
+            NewfileNameSpec = dir + "__ForegroundSpec" + str(fileNum) +".png"
+            Newfile_pathSpec = os.path.join(newFolderSpec,NewfileNameSpec) 
+            
+            
+            vocal_separation(file, Newfile_path,Newfile_pathSpec)
