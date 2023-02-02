@@ -35,6 +35,7 @@ Rectangle {
                 y: 54
             }
 
+
             PropertyChanges {
                 target: button_AudView
                 x: 8
