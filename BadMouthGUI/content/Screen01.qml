@@ -9,12 +9,16 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick 6.4
 import QtQuick.Controls 6.4
 import BadMouthGUI
+import QtQuick.Studio.Components 1.0
+import QtQuick.Layouts 6.3
 
 Rectangle {
     id: main_Rec
     width: Constants.width
     height: Constants.height
     color: "#241f31"
+    property bool isDialog2Open: false
+    z: 0
     property bool isDialogOpen: false
 
     states: [
@@ -236,11 +240,48 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        id: rectangle_Stats
+        x: 140
+        y: 25
+        width: 332
+        height: 287
+        visible: main_Rec.isDialog2Open
+        color: "#26282a"
+        radius: 30
+        z: 1
+        clip: false
+
+        ColumnLayout {
+            x: 95
+            y: 36
+            Text {
+                id: text1
+                color: "#ffffff"
+                text: qsTr("Bad Word")
+                font.pixelSize: 30
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 143
+                Layout.preferredHeight: 40
+            }
+
+            Text {
+                id: text2
+                color: "#ffffff"
+                text: qsTr("Count")
+                font.pixelSize: 30
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 143
+                Layout.preferredHeight: 31
+            }
+        }
+    }
+
     Column {
         id: column
         x: 8
         y: 8
-        width: 200
+        width: 111
         height: 304
         spacing: 8
 
@@ -254,6 +295,11 @@ Rectangle {
             Connections {
                 target: button_Home
                 onClicked: main_Rec.isDialogOpen = false
+            }
+
+            Connections {
+                target: button_Home
+                onClicked: main_Rec.isDialog2Open = false
             }
         }
 
@@ -274,6 +320,11 @@ Rectangle {
             id: button_Stats
             text: qsTr("Statistics")
             highlighted: true
+
+            Connections {
+                target: button_Stats
+                onClicked: main_Rec.isDialog2Open = !main_Rec.isDialog2Open
+            }
         }
 
         Button {
@@ -294,6 +345,7 @@ Rectangle {
         clip: false
         fillMode: Image.PreserveAspectFit
     }
+
 }
 
 /*##^##
