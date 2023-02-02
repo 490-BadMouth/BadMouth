@@ -250,6 +250,11 @@ Rectangle {
             icon.color: "#26282a"
             font.family: "Arial"
             highlighted: true
+
+            Connections {
+                target: button_Home
+                onClicked: main_Rec.isDialogOpen = false
+            }
         }
 
         Button {
@@ -262,11 +267,6 @@ Rectangle {
             Connections {
                 target: button_EQ
                 onClicked: main_Rec.isDialogOpen = !main_Rec.isDialogOpen
-            }
-
-            Connections {
-                target: button_EQ
-                onClicked: console.log("clicked")
             }
         }
 
