@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD:BadMouth_attempt2/BadMouth_attempt2.qmlproject.qtds
-<!-- Written by QtDesignStudio 3.9.0, 2023-02-05T20:41:52. -->
+<!-- Written by QtDesignStudio 4.0.0, 2023-02-01T19:34:37. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{208af762-52fa-40ce-8ad8-cfa070966e65}</value>
-=======
-<!-- Written by QtDesignStudio 3.9.0, 2023-02-06T04:01:17. -->
-<qtcreator>
- <data>
-  <variable>EnvironmentId</variable>
-  <value type="QByteArray">{50aedf66-a67a-46b4-b4ef-c107b4eb7d33}</value>
->>>>>>> c25e350ad5a4719271dc17f25c9ea1898d988647:BadMouthGUI/BadMouthGUI.qmlproject.qtds
+  <value type="QByteArray">{68dd92ed-aec6-463b-acba-2bcfd68b0274}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
