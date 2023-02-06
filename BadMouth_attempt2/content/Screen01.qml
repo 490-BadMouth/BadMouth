@@ -6,15 +6,18 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
-import QtQuick 6.2
-import QtQuick.Controls 6.2
+import QtQuick 6.4
+import QtQuick.Controls 6.4
 import BadMouth_attempt2
+import QtQuick3D
 
 Rectangle {
     id: rectangle
     width: Constants.width
     height: Constants.height
+    visible: true
     color: "#98a2a4"
+    property bool isStatsOpen: false
     property bool isEqOpen: false
     property bool isVisOpen: false
 
@@ -59,6 +62,11 @@ Rectangle {
                 target: buttonHome
                 onClicked: rectangle.isEqOpen = false
             }
+
+            Connections {
+                target: buttonHome
+                onClicked: rectangle.isStatsOpen = false
+            }
         }
 
         Button {
@@ -84,7 +92,12 @@ Rectangle {
 
             Connections {
                 target: buttonEq
-                onClicked: rectangle.isVisOpen - false
+                onClicked: rectangle.isVisOpen = false
+            }
+
+            Connections {
+                target: buttonEq
+                onClicked: rectangle.isStatsOpen = false
             }
         }
 
@@ -103,6 +116,21 @@ Rectangle {
             font.family: "Arial"
             transformOrigin: Item.Center
             flat: false
+
+            Connections {
+                target: buttonStats
+                onClicked: rectangle.isStatsOpen = !rectangle.isStatsOpen
+            }
+
+            Connections {
+                target: buttonStats
+                onClicked: rectangle.isVisOpen = false
+            }
+
+            Connections {
+                target: buttonStats
+                onClicked: rectangle.isEqOpen = false
+            }
         }
 
         Button {
@@ -129,6 +157,11 @@ Rectangle {
             Connections {
                 target: buttonAudVis
                 onClicked: rectangle.isEqOpen = false
+            }
+
+            Connections {
+                target: buttonAudVis
+                onClicked: rectangle.isStatsOpen = false
             }
         }
     }
@@ -183,11 +216,11 @@ Rectangle {
 
         Row {
             id: row
-            x: 16
             y: 32
             width: 624
             height: 400
             visible: rectangle.isEqOpen
+            anchors.horizontalCenter: parent.horizontalCenter
             bottomPadding: 0
             topPadding: 0
             spacing: 16
@@ -201,7 +234,7 @@ Rectangle {
 
                 TextArea {
                     id: textBass
-                    x: -33
+                    x: -36
                     y: 6
                     color: "#ffffff"
                     text: "Bass"
@@ -220,7 +253,13 @@ Rectangle {
 
                 TextArea {
                     id: textMid
-                    placeholderText: qsTr("Text Area")
+                    x: -36
+                    y: 6
+                    color: "#ffffff"
+                    text: "Mid"
+                    placeholderTextColor: "#88ffffff"
+                    placeholderText: qsTr("Bass")
+                    rotation: 270
                 }
             }
 
@@ -233,11 +272,51 @@ Rectangle {
 
                 TextArea {
                     id: textTreb
-                    placeholderText: qsTr("Text Area")
+                    x: -42
+                    y: 6
+                    color: "#ffffff"
+                    text: "Treble"
+                    placeholderTextColor: "#88ffffff"
+                    placeholderText: qsTr("Bass")
+                    rotation: 270
                 }
             }
         }
     }
+
+    Rectangle {
+        id: stats_rect
+        x: 136
+        y: 7
+        width: 656
+        height: 464
+        visible: rectangle.isStatsOpen
+        color: "#26282a"
+        radius: 30
+
+        Text {
+            id: text1
+            x: 0
+            y: 0
+            color: "#ffffff"
+            text: qsTr("FFT Data")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            font.pixelSize: 35
+            horizontalAlignment: Text.AlignHCenter
+            anchors.rightMargin: 10
+            anchors.leftMargin: 10
+            anchors.topMargin: 10
+        }
+
+    }
+
+    Item {
+        id: __materialLibrary__
+    }
+
+
 
     states: [
         State {
