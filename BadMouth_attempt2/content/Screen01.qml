@@ -228,6 +228,7 @@ Rectangle {
             Slider {
                 id: sliderBass
                 anchors.verticalCenter: parent.verticalCenter
+                layer.textureMirroring: ShaderEffectSource.MirrorVertically
                 scale: 1.5
                 rotation: 90
                 value: 0.5
