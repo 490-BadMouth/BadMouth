@@ -45,9 +45,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenterOffset: -174
-            anchors.leftMargin: 0
-            anchors.rightMargin: 2
-            font.pointSize: 14
+            anchors.leftMargin: -1
+            anchors.rightMargin: 1
+            font.pointSize: 11
             font.family: "Arial"
             highlighted: false
             flat: false
@@ -77,9 +77,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenterOffset: -58
-            anchors.leftMargin: 0
-            anchors.rightMargin: 2
-            font.pointSize: 14
+            anchors.leftMargin: -1
+            anchors.rightMargin: 1
+            font.pointSize: 11
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
@@ -109,9 +109,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenterOffset: 58
-            anchors.leftMargin: 0
-            anchors.rightMargin: 2
-            font.pointSize: 14
+            anchors.leftMargin: -1
+            anchors.rightMargin: 1
+            font.pointSize: 11
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
@@ -141,9 +141,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenterOffset: 174
-            anchors.leftMargin: 0
-            anchors.rightMargin: 2
-            font.pointSize: 14
+            anchors.leftMargin: -1
+            anchors.rightMargin: 1
+            font.pointSize: 11
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
@@ -177,7 +177,7 @@ Rectangle {
 
         Image {
             id: home_image
-            width: 250
+            width: 260
             height: 250
             visible: !rectangle.isEqOpen
             anchors.verticalCenter: parent.verticalCenter
@@ -234,10 +234,11 @@ Rectangle {
 
                 TextArea {
                     id: textBass
-                    x: -36
-                    y: 6
+                    x: -76
+                    y: 1
                     color: "#ffffff"
                     text: "Bass"
+                    horizontalAlignment: Text.AlignHCenter
                     rotation: 270
                     placeholderTextColor: "#88ffffff"
                     placeholderText: qsTr("Bass")
@@ -253,13 +254,14 @@ Rectangle {
 
                 TextArea {
                     id: textMid
-                    x: -36
-                    y: 6
+                    x: -76
+                    y: 1
                     color: "#ffffff"
-                    text: "Mid"
+                    text: "Mids"
+                    horizontalAlignment: Text.AlignHCenter
                     placeholderTextColor: "#88ffffff"
-                    placeholderText: qsTr("Bass")
                     rotation: 270
+                    placeholderText: qsTr("Bass")
                 }
             }
 
@@ -272,13 +274,14 @@ Rectangle {
 
                 TextArea {
                     id: textTreb
-                    x: -42
-                    y: 6
+                    x: -76
+                    y: 1
                     color: "#ffffff"
                     text: "Treble"
+                    horizontalAlignment: Text.AlignHCenter
                     placeholderTextColor: "#88ffffff"
-                    placeholderText: qsTr("Bass")
                     rotation: 270
+                    placeholderText: qsTr("Bass")
                 }
             }
         }
