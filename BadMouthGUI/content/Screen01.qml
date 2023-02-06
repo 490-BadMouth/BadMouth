@@ -17,9 +17,10 @@ Rectangle {
     width: Constants.width
     height: Constants.height
     color: "#241f31"
-    property bool isDialog2Open: false
-    z: 0
     property bool isDialogOpen: false
+    property bool isDialog2Open: false
+    property bool isDialog3Open: false
+    z: 0
 
     states: [
         State {
@@ -277,6 +278,33 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        id: rectangle_Aud
+        x: 140
+        y: 25
+        width: 332
+        height: 287
+        visible: main_Rec.isDialog3Open
+        color: "#26282a"
+        radius: 30
+        z: 1
+        clip: false
+
+        ColumnLayout {
+            x: 95
+            y: 36
+            Text {
+                id: text3
+                color: "#ffffff"
+                text: qsTr("FFT Data")
+                font.pixelSize: 30
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 143
+                Layout.preferredHeight: 40
+            }
+        }
+    }
+
     Column {
         id: column
         x: 8
@@ -301,6 +329,11 @@ Rectangle {
                 target: button_Home
                 onClicked: main_Rec.isDialog2Open = false
             }
+
+            Connections {
+                target: button_Home
+                onClicked: main_Rec.isDialog3Open = false
+            }
         }
 
         Button {
@@ -319,6 +352,11 @@ Rectangle {
                 target: button_EQ
                 onClicked: main_Rec.isDialog2Open = false
             }
+
+            Connections {
+                target: button_EQ
+                onClicked: main_Rec.isDialog3Open = false
+            }
         }
 
         Button {
@@ -335,12 +373,32 @@ Rectangle {
                 target: button_Stats
                 onClicked: main_Rec.isDialogOpen = false
             }
+
+            Connections {
+                target: button_Stats
+                onClicked: main_Rec.isDialog3Open = false
+            }
         }
 
         Button {
             id: button_AudView
             text: qsTr("Audio View")
             highlighted: true
+
+            Connections {
+                target: button_AudView
+                onClicked: main_Rec.isDialog3Open = !main_Rec.isDialog3Open
+            }
+
+            Connections {
+                target: button_AudView
+                onClicked: main_Rec.isDialogOpen = false
+            }
+
+            Connections {
+                target: button_AudView
+                onClicked: main_Rec.isDialog2Open = false
+            }
         }
     }
 
