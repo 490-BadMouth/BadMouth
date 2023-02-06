@@ -314,6 +314,11 @@ Rectangle {
                 target: button_EQ
                 onClicked: main_Rec.isDialogOpen = !main_Rec.isDialogOpen
             }
+
+            Connections {
+                target: button_EQ
+                onClicked: main_Rec.isDialog2Open = false
+            }
         }
 
         Button {
@@ -324,6 +329,11 @@ Rectangle {
             Connections {
                 target: button_Stats
                 onClicked: main_Rec.isDialog2Open = !main_Rec.isDialog2Open
+            }
+
+            Connections {
+                target: button_Stats
+                onClicked: main_Rec.isDialogOpen = false
             }
         }
 
