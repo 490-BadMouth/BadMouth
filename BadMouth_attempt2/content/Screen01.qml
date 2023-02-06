@@ -22,36 +22,69 @@ Rectangle {
         id: column
         x: 8
         y: 8
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        spacing: 20
+        anchors.rightMargin: 670
+        anchors.leftMargin: 8
+        anchors.bottomMargin: 10
+        anchors.topMargin: 10
         width: 120
         height: 464
-        spacing: 8
 
         Button {
             id: buttonHome
             height: 100
             text: qsTr("Home")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenterOffset: -174
+            anchors.leftMargin: 0
+            anchors.rightMargin: 2
             font.pointSize: 14
             font.family: "Arial"
             highlighted: false
             flat: false
             transformOrigin: Item.Center
-            anchors.horizontalCenter: parent.horizontalCenter
+
+            Connections {
+                target: buttonHome
+                onClicked: rectangle.isVisOpen = false
+            }
+
+            Connections {
+                target: buttonHome
+                onClicked: rectangle.isEqOpen = false
+            }
         }
 
         Button {
             id: buttonEq
             height: 100
             text: qsTr("Equalizer")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenterOffset: -58
+            anchors.leftMargin: 0
+            anchors.rightMargin: 2
             font.pointSize: 14
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
             flat: false
-            anchors.horizontalCenter: parent.horizontalCenter
 
             Connections {
                 target: buttonEq
                 onClicked: rectangle.isEqOpen = !rectangle.isEqOpen
+            }
+
+            Connections {
+                target: buttonEq
+                onClicked: rectangle.isVisOpen - false
             }
         }
 
@@ -59,28 +92,43 @@ Rectangle {
             id: buttonStats
             height: 100
             text: qsTr("Stats")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenterOffset: 58
+            anchors.leftMargin: 0
+            anchors.rightMargin: 2
             font.pointSize: 14
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
             flat: false
-            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Button {
             id: buttonAudVis
             height: 100
             text: qsTr("Visualizer")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.verticalCenterOffset: 174
+            anchors.leftMargin: 0
+            anchors.rightMargin: 2
             font.pointSize: 14
             highlighted: false
             font.family: "Arial"
             transformOrigin: Item.Center
             flat: false
-            anchors.horizontalCenter: parent.horizontalCenter
 
             Connections {
                 target: buttonAudVis
                 onClicked: rectangle.isVisOpen = !rectangle.isVisOpen
+            }
+
+            Connections {
+                target: buttonAudVis
+                onClicked: rectangle.isEqOpen = false
             }
         }
     }
@@ -197,10 +245,3 @@ Rectangle {
         }
     ]
 }
-
-/*##^##
-Designer {
-    D{i:0}D{i:3}D{i:5}D{i:6}D{i:9;invisible:true}D{i:10;invisible:true}
-}
-##^##*/
-
