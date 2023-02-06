@@ -84,7 +84,7 @@ Project {
     importPaths: [ "imports", "asset_imports" ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/BadMouthGUI"
+    targetDirectory: "/opt/BadMouth_attempt2"
 
     qdsVersion: "3.9"
 
@@ -106,6 +106,4 @@ Project {
     supportedLanguages: ["en"]
     primaryLanguage: "en"
 
-
-    mainUiFile: "content/Screen01.qml"
 }

@@ -1,6 +1,6 @@
 MetaInfo {
     Type {
-        name: "BadMouthGUI.EventListSimulator"
+        name: "BadMouth_attempt2.EventListSimulator"
         icon: ":/qtquickplugin/images/item-icon16.png"
 
         Hints {

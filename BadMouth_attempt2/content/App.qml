@@ -3,14 +3,14 @@
 
 import QtQuick 6.2
 import QtQuick.Window 6.2
-import BadMouthGUI
+import BadMouth_attempt2
 
 Window {
     width: mainScreen.width
     height: mainScreen.height
 
     visible: true
-    title: "BadMouthGUI"
+    title: "BadMouth_attempt2"
 
     Screen01 {
         id: mainScreen

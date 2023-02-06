@@ -6,4 +6,4 @@
 #include <QtQml/qqmlextensionplugin.h>
 
 Q_IMPORT_QML_PLUGIN(contentPlugin)
-Q_IMPORT_QML_PLUGIN(BadMouthGUIPlugin)
+Q_IMPORT_QML_PLUGIN(BadMouth_attempt2Plugin)
