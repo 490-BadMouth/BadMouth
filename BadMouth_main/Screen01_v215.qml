@@ -8,13 +8,11 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 */
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import BadMouth_attempt2
-import QtQuick3D
 
 Rectangle {
     id: rectangle
-    width: Constants.width
-    height: Constants.height
+    width: 800
+    height: 480
     visible: true
     color: "#98a2a4"
     property bool isStatsOpen: false
