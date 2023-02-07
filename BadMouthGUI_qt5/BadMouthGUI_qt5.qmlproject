@@ -95,4 +95,6 @@ Project {
     supportedLanguages: ["en"]
     primaryLanguage: "en"
 
+
+    mainUiFile: "content/Screen01.qml"
 }
