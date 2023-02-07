@@ -2,7 +2,7 @@
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtWidgets import *
 from PySide2.QtCore import *
-from ledControl import Setting
+from bm_io import Setting
 
 # launch app
 if __name__ == '__main__':
