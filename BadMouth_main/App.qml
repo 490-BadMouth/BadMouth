@@ -1,13 +1,13 @@
 // import library
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2
 
 
 
 ApplicationWindow {
 
-    id: Application
-    width: 800
-    height: 480
+    id: application
+    width: 1280
+    height: 720
     visible: true
     visibility: "FullScreen"
 
