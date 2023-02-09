@@ -24,7 +24,7 @@ stream = p.open(
 fig,ax = plt.subplots()
 x = np.arange(0,2*CHUNK,2)
 line, = ax.plot(x, np.random.rand(CHUNK),'r')
-ax.set_ylim(-60000,60000)
+ax.set_ylim(-20000,20000)
 ax.ser_xlim = (0,CHUNK)
 fig.show()
 
