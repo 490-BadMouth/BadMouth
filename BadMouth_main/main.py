@@ -1,17 +1,22 @@
 # import libraries
-from PySide2.QtQml import QQmlApplicationEngine
-from PySide2.QtWidgets import *
-from PySide2.QtCore import *
-from bm_io import Setting
+import os
+import sys
+import bm_gui
+
+
+def main():
+    print("It's BadMouthin' Time...")
+    #Create QApplication 
+    app = bm_gui.QApplication(sys.argv)
+    #Spawn window and show
+    window = bm_gui.main_window()
+    window.show()
+    print("Exiting...")
+    #Exit QApplication
+    sys.exit(app.exec_())
+
 
 # launch app
 if __name__ == '__main__':
-    app = QApplication([])
-    engine = QQmlApplicationEngine()
-    # location of the fullscreen app that was created
-    url = QUrl("./App.qml")
-    context = engine.rootContext()
-    setting = Setting()
-    context.setContextProperty("_Setting", setting)
-    engine.load(url)
-    app.exec_()
+ print("Starting...")
+ main()

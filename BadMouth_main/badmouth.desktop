@@ -1,7 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=BadMouth Test 
-Comment=Hope this works
-Exec=/home/mendel/BadMouth/BadMouth_main/badmouth_start.sh 
-Type=Application 
-Categories=Application;Development;
