@@ -54,9 +54,7 @@ class Ui_MainWindow(object):
         palette.setBrush(QPalette.Active, QPalette.ToolTipText, brush)
         brush9 = QBrush(QColor(0, 0, 0, 127))
         brush9.setStyle(Qt.SolidPattern)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
-#endif
+
         palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         brush10 = QBrush(QColor(239, 239, 239, 255))
         brush10.setStyle(Qt.SolidPattern)
@@ -86,9 +84,7 @@ class Ui_MainWindow(object):
         palette.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush)
         brush16 = QBrush(QColor(0, 0, 0, 128))
         brush16.setStyle(Qt.SolidPattern)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush16)
-#endif
+
         palette.setBrush(QPalette.Disabled, QPalette.WindowText, brush4)
         palette.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette.setBrush(QPalette.Disabled, QPalette.Light, brush2)
@@ -106,9 +102,7 @@ class Ui_MainWindow(object):
         palette.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush15)
         palette.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush8)
         palette.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush16)
-#endif
+
         MainWindow.setPalette(palette)
         MainWindow.setAnimated(False)
         self.centralwidget = QWidget(MainWindow)
@@ -180,9 +174,7 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Active, QPalette.AlternateBase, brush7)
         palette1.setBrush(QPalette.Active, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Active, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
-#endif
+
         palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Inactive, QPalette.Button, brush10)
         palette1.setBrush(QPalette.Inactive, QPalette.Light, brush6)
@@ -198,9 +190,7 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush15)
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush16)
-#endif
+
         palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush4)
         palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
         palette1.setBrush(QPalette.Disabled, QPalette.Light, brush2)
@@ -216,9 +206,7 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush15)
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush16)
-#endif
+
         self.frame_content.setPalette(palette1)
         font1 = QFont()
         font1.setPointSize(10)
