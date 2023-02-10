@@ -464,7 +464,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>221</width>
+      <width>261</width>
       <height>681</height>
      </rect>
     </property>
@@ -473,7 +473,7 @@
       <widget class="QPushButton" name="pushButton_home">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -486,7 +486,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -504,7 +504,7 @@
       <widget class="QPushButton" name="pushButton_eq">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -517,7 +517,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -535,7 +535,7 @@
       <widget class="QPushButton" name="pushButton_vis">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -548,7 +548,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -566,7 +566,7 @@
       <widget class="QPushButton" name="pushButton_stats">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -579,7 +579,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -598,9 +598,9 @@
    <widget class="QFrame" name="frame_content">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>270</x>
       <y>20</y>
-      <width>1001</width>
+      <width>991</width>
       <height>681</height>
      </rect>
     </property>
@@ -1069,9 +1069,9 @@
     <widget class="QStackedWidget" name="stackedWidget_content">
      <property name="geometry">
       <rect>
-       <x>1</x>
+       <x>-1</x>
        <y>1</y>
-       <width>999</width>
+       <width>1001</width>
        <height>679</height>
       </rect>
      </property>
@@ -1083,7 +1083,7 @@
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>120</y>
          <width>961</width>
          <height>261</height>
@@ -1091,10 +1091,16 @@
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
-         <number>150</number>
+         <number>100</number>
         </property>
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>50</number>
+        </property>
+        <property name="rightMargin">
+         <number>50</number>
         </property>
         <item>
          <widget class="QDial" name="dial_2">
@@ -1122,15 +1128,15 @@
       <widget class="QWidget" name="horizontalLayoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>40</y>
          <width>961</width>
-         <height>80</height>
+         <height>82</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_eq_labels">
         <property name="spacing">
-         <number>150</number>
+         <number>0</number>
         </property>
         <item>
          <widget class="QLabel" name="label_bass">
@@ -1182,8 +1188,8 @@
       <widget class="QWidget" name="horizontalLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>19</x>
-         <y>379</y>
+         <x>10</x>
+         <y>380</y>
          <width>961</width>
          <height>91</height>
         </rect>
@@ -1191,6 +1197,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_eq_7segs">
         <item>
          <widget class="QLCDNumber" name="lcdNumber_3">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
@@ -1205,6 +1214,9 @@
         </item>
         <item>
          <widget class="QLCDNumber" name="lcdNumber">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
