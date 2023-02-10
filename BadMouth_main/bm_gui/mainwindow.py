@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
-        self.timer.setInterval(10)
+        self.timer.setInterval(1)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
