@@ -10,6 +10,18 @@
     <height>720</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
   <property name="palette">
    <palette>
     <active>
@@ -459,21 +471,60 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
+   </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>221</width>
+      <width>261</width>
       <height>681</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>261</width>
+      <height>681</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>261</width>
+      <height>681</height>
+     </size>
+    </property>
     <layout class="QVBoxLayout" name="verticalLayout_buttons">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
      <item>
       <widget class="QPushButton" name="pushButton_home">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -486,7 +537,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -502,9 +553,21 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_eq">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -517,7 +580,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -533,9 +596,21 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_vis">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -548,7 +623,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -564,9 +639,21 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_stats">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -579,7 +666,7 @@
        <property name="font">
         <font>
          <family>Ubuntu</family>
-         <pointsize>36</pointsize>
+         <pointsize>32</pointsize>
          <bold>false</bold>
          <stylestrategy>PreferDefault</stylestrategy>
          <kerning>true</kerning>
@@ -598,11 +685,29 @@
    <widget class="QFrame" name="frame_content">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>270</x>
       <y>20</y>
-      <width>1001</width>
-      <height>681</height>
+      <width>1100</width>
+      <height>680</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1100</width>
+      <height>700</height>
+     </size>
     </property>
     <property name="palette">
      <palette>
@@ -1069,35 +1174,95 @@
     <widget class="QStackedWidget" name="stackedWidget_content">
      <property name="geometry">
       <rect>
-       <x>1</x>
+       <x>-1</x>
        <y>1</y>
-       <width>999</width>
+       <width>1001</width>
        <height>679</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>1001</width>
+       <height>679</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>1001</width>
+       <height>679</height>
+      </size>
      </property>
      <property name="currentIndex">
       <number>1</number>
      </property>
      <widget class="QWidget" name="page_home"/>
      <widget class="QWidget" name="page_eq">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1280</width>
+        <height>720</height>
+       </size>
+      </property>
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>120</y>
          <width>961</width>
          <height>261</height>
         </rect>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>961</width>
+         <height>261</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>961</width>
+         <height>261</height>
+        </size>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
-         <number>150</number>
+         <number>100</number>
         </property>
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
+        <property name="leftMargin">
+         <number>50</number>
+        </property>
+        <property name="rightMargin">
+         <number>50</number>
+        </property>
         <item>
          <widget class="QDial" name="dial_2">
+          <property name="minimumSize">
+           <size>
+            <width>220</width>
+            <height>259</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>220</width>
+            <height>259</height>
+           </size>
+          </property>
           <property name="notchesVisible">
            <bool>true</bool>
           </property>
@@ -1105,6 +1270,18 @@
         </item>
         <item>
          <widget class="QDial" name="dial_3">
+          <property name="minimumSize">
+           <size>
+            <width>221</width>
+            <height>259</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>221</width>
+            <height>259</height>
+           </size>
+          </property>
           <property name="notchesVisible">
            <bool>true</bool>
           </property>
@@ -1112,6 +1289,18 @@
         </item>
         <item>
          <widget class="QDial" name="dial">
+          <property name="minimumSize">
+           <size>
+            <width>220</width>
+            <height>259</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>220</width>
+            <height>259</height>
+           </size>
+          </property>
           <property name="notchesVisible">
            <bool>true</bool>
           </property>
@@ -1122,18 +1311,42 @@
       <widget class="QWidget" name="horizontalLayoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>40</y>
          <width>961</width>
-         <height>80</height>
+         <height>82</height>
         </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>961</width>
+         <height>82</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>961</width>
+         <height>82</height>
+        </size>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_eq_labels">
         <property name="spacing">
-         <number>150</number>
+         <number>0</number>
         </property>
         <item>
          <widget class="QLabel" name="label_bass">
+          <property name="minimumSize">
+           <size>
+            <width>320</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>320</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>36</pointsize>
@@ -1149,6 +1362,18 @@
         </item>
         <item>
          <widget class="QLabel" name="label_mid">
+          <property name="minimumSize">
+           <size>
+            <width>319</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>319</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>36</pointsize>
@@ -1164,6 +1389,18 @@
         </item>
         <item>
          <widget class="QLabel" name="label_treb">
+          <property name="minimumSize">
+           <size>
+            <width>320</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>320</width>
+            <height>80</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>36</pointsize>
@@ -1182,15 +1419,42 @@
       <widget class="QWidget" name="horizontalLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>19</x>
-         <y>379</y>
+         <x>10</x>
+         <y>380</y>
          <width>961</width>
          <height>91</height>
         </rect>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>961</width>
+         <height>91</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>961</width>
+         <height>91</height>
+        </size>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout_eq_7segs">
         <item>
          <widget class="QLCDNumber" name="lcdNumber_3">
+          <property name="minimumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
@@ -1198,6 +1462,18 @@
         </item>
         <item>
          <widget class="QLCDNumber" name="lcdNumber_2">
+          <property name="minimumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
@@ -1205,6 +1481,21 @@
         </item>
         <item>
          <widget class="QLCDNumber" name="lcdNumber">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>315</width>
+            <height>89</height>
+           </size>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
