@@ -49,7 +49,7 @@ class MainWindow(QMainWindow):
         self.x = np.arange(0,2*self.CHUNK,2)
         self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
         self.canvas = MplCanvas(self, width=5, height=4, dpi=75)
-        self.canvas.axes.set_ylim(-25000,25000)
+        self.canvas.axes.set_ylim(-20000,20000)
         self.canvas.axes.ser_xlim = (0,self.CHUNK)
 
         self.ui = Ui_MainWindow()
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
-        self.timer.setInterval(10)
+        self.timer.setInterval(5)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
