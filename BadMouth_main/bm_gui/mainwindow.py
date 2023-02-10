@@ -49,7 +49,7 @@ class MainWindow(QMainWindow):
         self.x = np.arange(0,2*self.CHUNK,2)
         self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.canvas.axes.set_ylim(-60000,60000)
+        self.canvas.axes.set_ylim(-30000,30000)
         self.canvas.axes.ser_xlim = (0,self.CHUNK)
 
         self.ui = Ui_MainWindow()
