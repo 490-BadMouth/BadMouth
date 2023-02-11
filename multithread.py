@@ -31,8 +31,6 @@ class WorkerSignals(QObject):
     progress = Signal(int)
 
 
-
-
 class Worker(QRunnable):
     '''
     Worker thread
