@@ -81,6 +81,7 @@ class MainWindow(QMainWindow):
             output=True,
             frames_per_buffer=self.CHUNK
         )        
+        
         self._plot_ref = None
 
         self.threadpool = QThreadPool()
@@ -97,8 +98,6 @@ class MainWindow(QMainWindow):
         self.init_ui()
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
-
-
         self.show()
 
         # Setup a timer to trigger the redraw by calling update_plot.
@@ -107,10 +106,6 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
-    def draw_plot(self):
-        # We need to store a reference to the plotted line
-        # somewhere, so we can apply the new data to it.
-        self.update_plot()
 
     def update_plot(self):
 
@@ -131,7 +126,7 @@ class MainWindow(QMainWindow):
         self.canvas.draw()
 
     def init_ui(self):
-        worker = Worker(self.draw_plot) # Any other args, kwargs are passed to the run function
+        worker = Worker(self.update_plot) # Any other args, kwargs are passed to the run function
         self.threadpool.start(worker)
         print("stuff")
 
