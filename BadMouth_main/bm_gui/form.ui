@@ -1162,10 +1162,10 @@
         <bool>true</bool>
        </property>
        <property name="checked">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_processing_toggle">
+      <widget class="QLabel" name="label_enabled">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1181,6 +1181,24 @@
        </property>
        <property name="text">
         <string>Audio Processing: Enabled</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_disabled">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>0</y>
+         <width>591</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Audio Processing: Disabled</string>
        </property>
       </widget>
      </widget>
@@ -1432,6 +1450,38 @@
     <hint type="destinationlabel">
      <x>1130</x>
      <y>461</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_pato</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_disabled</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>566</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_pato</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_enabled</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1009</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1006</x>
+     <y>41</y>
     </hint>
    </hints>
   </connection>

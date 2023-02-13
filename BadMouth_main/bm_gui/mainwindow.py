@@ -144,6 +144,8 @@ class MainWindow(QMainWindow):
 
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
+        self.ui.label_enabled.setHidden(True)
+        self.ui.label_disabled.setVisible(True)
         self.ui.pushButton_home.clicked.connect(self.home_widget)
         self.ui.pushButton_eq.clicked.connect(self.eq_widget)
         self.ui.pushButton_vis.clicked.connect(self.vis_widget)
