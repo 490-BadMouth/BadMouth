@@ -55,7 +55,6 @@ class Ui_MainWindow(object):
         brush9 = QBrush(QColor(0, 0, 0, 127))
         brush9.setStyle(Qt.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
 #endif
         palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         brush10 = QBrush(QColor(239, 239, 239, 255))
@@ -87,7 +86,6 @@ class Ui_MainWindow(object):
         brush16 = QBrush(QColor(0, 0, 0, 128))
         brush16.setStyle(Qt.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush16)
 #endif
         palette.setBrush(QPalette.Disabled, QPalette.WindowText, brush4)
         palette.setBrush(QPalette.Disabled, QPalette.Button, brush1)
@@ -107,7 +105,6 @@ class Ui_MainWindow(object):
         palette.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush8)
         palette.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush16)
 #endif
         MainWindow.setPalette(palette)
         MainWindow.setAutoFillBackground(False)
@@ -193,7 +190,6 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Active, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Active, QPalette.ToolTipText, brush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
 #endif
         palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Inactive, QPalette.Button, brush10)
@@ -211,7 +207,6 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush16)
 #endif
         palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush4)
         palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
@@ -229,7 +224,6 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush8)
         palette1.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush16)
 #endif
         self.frame_content.setPalette(palette1)
         font1 = QFont()
@@ -377,17 +371,17 @@ class Ui_MainWindow(object):
         self.page_stats.setObjectName(u"page_stats")
         self.label_2 = QLabel(self.page_stats)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(280, 50, 521, 161))
+        self.label_2.setGeometry(QRect(280, -20, 521, 161))
         self.label_2.setFont(font2)
         self.lcdNumber_4 = QLCDNumber(self.page_stats)
         self.lcdNumber_4.setObjectName(u"lcdNumber_4")
-        self.lcdNumber_4.setGeometry(QRect(400, 160, 171, 91))
+        self.lcdNumber_4.setGeometry(QRect(400, 90, 171, 91))
         self.lcdNumber_4.setFrameShape(QFrame.Panel)
         self.lcdNumber_4.setFrameShadow(QFrame.Sunken)
         self.lcdNumber_4.setProperty("intValue", 12642)
         self.gridLayoutWidget_2 = QWidget(self.page_stats)
         self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(40, 260, 933, 301))
+        self.gridLayoutWidget_2.setGeometry(QRect(40, 190, 933, 301))
         self.gridLayout = QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -451,11 +445,11 @@ class Ui_MainWindow(object):
 
         self.label_6 = QLabel(self.page_stats)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(150, 580, 571, 71))
+        self.label_6.setGeometry(QRect(150, 510, 571, 71))
         self.label_6.setFont(font3)
         self.lcdNumber_7 = QLCDNumber(self.page_stats)
         self.lcdNumber_7.setObjectName(u"lcdNumber_7")
-        self.lcdNumber_7.setGeometry(QRect(690, 580, 181, 81))
+        self.lcdNumber_7.setGeometry(QRect(690, 500, 181, 81))
         self.lcdNumber_7.setFrameShape(QFrame.Panel)
         self.lcdNumber_7.setFrameShadow(QFrame.Sunken)
         self.lcdNumber_7.setProperty("intValue", 860)
@@ -475,7 +469,7 @@ class Ui_MainWindow(object):
         self.pushButton_pato.toggled.connect(self.label_enabled.setVisible)
 
         self.pushButton_home.setDefault(False)
-        self.stackedWidget_content.setCurrentIndex(0)
+        self.stackedWidget_content.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
