@@ -95,19 +95,19 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        #self.ui.gridLayout_plot.addWidget(self.canvas)
+        self.ui.gridLayout_plot.addWidget(self.canvas)
 
         self.show()
 
         # Setup a timer to trigger the redraw by calling update_plot.
-        """self.timer = QTimer()
+        self.timer = QTimer()
         self.timer.setInterval(1)
         self.timer.timeout.connect(self.update_plot)
-        self.timer.start()"""
+        self.timer.start()
 
     def update_plot(self):
 
-        if(self.ui.stackedWidget_content.currentIndex()==2):
+        if(not self.ui.frame_plot.isHidden()):
             data = self.stream.read(self.CHUNK)
             ydata = struct.unpack(str(self.CHUNK) + 'h', data)
 
@@ -128,5 +128,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()
-    widget.init_ui()
     sys.exit(app.exec_())

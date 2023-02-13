@@ -598,7 +598,10 @@
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame_content">
+   <widget class="QFrame" name="frame_plot">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -1069,188 +1072,185 @@
     <property name="midLineWidth">
      <number>0</number>
     </property>
-    <widget class="QStackedWidget" name="stackedWidget_content">
+    <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>1</y>
-       <width>999</width>
-       <height>679</height>
+       <x>9</x>
+       <y>9</y>
+       <width>981</width>
+       <height>661</height>
       </rect>
      </property>
-     <property name="lineWidth">
-      <number>0</number>
+     <layout class="QGridLayout" name="gridLayout_plot"/>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_eq">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>999</width>
+      <height>680</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>961</width>
+       <height>80</height>
+      </rect>
      </property>
-     <property name="currentIndex">
-      <number>1</number>
+     <layout class="QHBoxLayout" name="horizontalLayout_eq_labels_2">
+      <property name="spacing">
+       <number>150</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_bass_2">
+        <property name="font">
+         <font>
+          <pointsize>36</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Bass</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_mid_2">
+        <property name="font">
+         <font>
+          <pointsize>36</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Mid</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_treb_2">
+        <property name="font">
+         <font>
+          <pointsize>36</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Treble</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>19</x>
+       <y>379</y>
+       <width>961</width>
+       <height>91</height>
+      </rect>
      </property>
-     <widget class="QWidget" name="page_home"/>
-     <widget class="QWidget" name="page_eq">
-      <widget class="QWidget" name="horizontalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>120</y>
-         <width>961</width>
-         <height>261</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <property name="spacing">
-         <number>150</number>
+     <layout class="QHBoxLayout" name="horizontalLayout_eq_7segs_2">
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber_4">
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
         </property>
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber_5">
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
         </property>
-        <item>
-         <widget class="QDial" name="dial_bass">
-          <property name="minimum">
-           <number>-11</number>
-          </property>
-          <property name="maximum">
-           <number>11</number>
-          </property>
-          <property name="notchesVisible">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDial" name="dial_mid">
-          <property name="minimum">
-           <number>-11</number>
-          </property>
-          <property name="maximum">
-           <number>11</number>
-          </property>
-          <property name="notchesVisible">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDial" name="dial_treb">
-          <property name="minimum">
-           <number>-11</number>
-          </property>
-          <property name="maximum">
-           <number>11</number>
-          </property>
-          <property name="notchesVisible">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>961</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_eq_labels">
-        <property name="spacing">
-         <number>150</number>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber_6">
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
         </property>
-        <item>
-         <widget class="QLabel" name="label_bass">
-          <property name="font">
-           <font>
-            <pointsize>36</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Bass</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_mid">
-          <property name="font">
-           <font>
-            <pointsize>36</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Mid</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_treb">
-          <property name="font">
-           <font>
-            <pointsize>36</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Treble</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_3">
-       <property name="geometry">
-        <rect>
-         <x>19</x>
-         <y>379</y>
-         <width>961</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_eq_7segs">
-        <item>
-         <widget class="QLCDNumber" name="lcdNumber_3">
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLCDNumber" name="lcdNumber_2">
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLCDNumber" name="lcdNumber">
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="page_vis">
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>981</width>
-         <height>661</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_plot"/>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="page_stats"/>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>961</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>150</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item>
+       <widget class="QDial" name="dial_bass_2">
+        <property name="minimum">
+         <number>-11</number>
+        </property>
+        <property name="maximum">
+         <number>11</number>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDial" name="dial_mid_2">
+        <property name="minimum">
+         <number>-11</number>
+        </property>
+        <property name="maximum">
+         <number>11</number>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDial" name="dial_treb_2">
+        <property name="minimum">
+         <number>-11</number>
+        </property>
+        <property name="maximum">
+         <number>11</number>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>
@@ -1258,66 +1258,114 @@
  <resources/>
  <connections>
   <connection>
-   <sender>dial_bass</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber_3</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>425</x>
-     <y>221</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>536</x>
-     <y>459</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>dial_mid</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber_2</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>701</x>
-     <y>240</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>755</x>
-     <y>445</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>dial_treb</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1102</x>
-     <y>214</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1130</x>
-     <y>461</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_home</sender>
+   <sender>pushButton_eq</sender>
    <signal>clicked()</signal>
-   <receiver>stackedWidget_content</receiver>
+   <receiver>frame_eq</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>759</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_vis</sender>
+   <signal>clicked()</signal>
+   <receiver>frame_plot</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>760</x>
+     <y>360</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_vis</sender>
+   <signal>clicked()</signal>
+   <receiver>frame_eq</receiver>
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>103</x>
-     <y>70</y>
+     <x>120</x>
+     <y>441</y>
     </hint>
     <hint type="destinationlabel">
-     <x>323</x>
-     <y>40</y>
+     <x>759</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_eq</sender>
+   <signal>clicked()</signal>
+   <receiver>frame_plot</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>760</x>
+     <y>360</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_bass_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lcdNumber_4</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>283</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>478</x>
+     <y>432</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_mid_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lcdNumber_5</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>731</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>779</x>
+     <y>439</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_treb_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lcdNumber_6</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1087</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1080</x>
+     <y>449</y>
     </hint>
    </hints>
   </connection>
