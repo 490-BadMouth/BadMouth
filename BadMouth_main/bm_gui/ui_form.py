@@ -242,9 +242,14 @@ class Ui_MainWindow(object):
         self.stackedWidget_content = QStackedWidget(self.frame_content)
         self.stackedWidget_content.setObjectName(u"stackedWidget_content")
         self.stackedWidget_content.setGeometry(QRect(1, 1, 999, 679))
-        self.stackedWidget_content.setLineWidth(0)
+        self.stackedWidget_content.setProperty("", 0)
         self.page_home = QWidget()
         self.page_home.setObjectName(u"page_home")
+        self.Duck = QLabel(self.page_home)
+        self.Duck.setObjectName(u"Duck")
+        self.Duck.setGeometry(QRect(140, 0, 771, 681))
+        self.Duck.setPixmap(QPixmap(u"logooooooooo.png"))
+        self.Duck.setScaledContents(True)
         self.stackedWidget_content.addWidget(self.page_home)
         self.page_eq = QWidget()
         self.page_eq.setObjectName(u"page_eq")
@@ -282,7 +287,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayoutWidget_2 = QWidget(self.page_eq)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 40, 961, 80))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 40, 961, 82))
         self.horizontalLayout_eq_labels = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_eq_labels.setSpacing(150)
         self.horizontalLayout_eq_labels.setObjectName(u"horizontalLayout_eq_labels")
@@ -348,8 +353,7 @@ class Ui_MainWindow(object):
         self.page_stats.setObjectName(u"page_stats")
         self.stackedWidget_content.addWidget(self.page_stats)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.frame_eq.raise_()
-        self.frame_plot.raise_()
+        self.frame_content.raise_()
         self.verticalLayoutWidget.raise_()
 
         self.retranslateUi(MainWindow)
@@ -358,7 +362,7 @@ class Ui_MainWindow(object):
         self.dial_treb.valueChanged.connect(self.lcdNumber.display)
 
         self.pushButton_home.setDefault(False)
-        self.stackedWidget_content.setCurrentIndex(1)
+        self.stackedWidget_content.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -370,6 +374,7 @@ class Ui_MainWindow(object):
         self.pushButton_eq.setText(QCoreApplication.translate("MainWindow", u"Equalizer", None))
         self.pushButton_vis.setText(QCoreApplication.translate("MainWindow", u"Visualizer", None))
         self.pushButton_stats.setText(QCoreApplication.translate("MainWindow", u"Stats", None))
+        self.Duck.setText("")
         self.label_bass.setText(QCoreApplication.translate("MainWindow", u"Bass", None))
         self.label_mid.setText(QCoreApplication.translate("MainWindow", u"Mid", None))
         self.label_treb.setText(QCoreApplication.translate("MainWindow", u"Treble", None))

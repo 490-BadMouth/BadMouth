@@ -622,14 +622,7 @@
      </item>
     </layout>
    </widget>
-<<<<<<< HEAD
    <widget class="QFrame" name="frame_content">
-=======
-   <widget class="QFrame" name="frame_plot">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
->>>>>>> 82f50994bc17e11238b3d0c3cab9ef533e9fbb59
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -1109,45 +1102,33 @@
        <height>679</height>
       </rect>
      </property>
-<<<<<<< HEAD
-     <property name="lineWidth">
-      <number>0</number>
-=======
-     <layout class="QGridLayout" name="gridLayout_plot"/>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="frame_eq">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>20</y>
-      <width>999</width>
-      <height>680</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QWidget" name="horizontalLayoutWidget_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>40</y>
-       <width>961</width>
-       <height>82</height>
-      </rect>
->>>>>>> 82f50994bc17e11238b3d0c3cab9ef533e9fbb59
-     </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="page_home"/>
+     <property name="" stdset="0">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_home">
+      <widget class="QLabel" name="Duck">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>0</y>
+         <width>771</width>
+         <height>681</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>logooooooooo.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="page_eq">
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
@@ -1212,7 +1193,7 @@
          <x>20</x>
          <y>40</y>
          <width>961</width>
-         <height>80</height>
+         <height>82</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_eq_labels">
@@ -1316,8 +1297,7 @@
      <widget class="QWidget" name="page_stats"/>
     </widget>
    </widget>
-   <zorder>frame_eq</zorder>
-   <zorder>frame_plot</zorder>
+   <zorder>frame_content</zorder>
    <zorder>verticalLayoutWidget</zorder>
   </widget>
  </widget>
@@ -1368,22 +1348,6 @@
     <hint type="destinationlabel">
      <x>1130</x>
      <y>461</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_home</sender>
-   <signal>clicked()</signal>
-   <receiver>frame_eq</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>146</x>
-     <y>113</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>36</y>
     </hint>
    </hints>
   </connection>
