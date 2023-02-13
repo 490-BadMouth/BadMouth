@@ -66,10 +66,10 @@ class MainWindow(QMainWindow):
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
 
-        self.CHUNK = 1024 * 2
-        FORMAT = pa.paInt16
+        self.CHUNK = 256 * 2
+        FORMAT = pa.paInt8
         CHANNELS = 1
-        RATE = 44100 # in Hz
+        RATE = 22500 # in Hz
 
         p = pa.PyAudio()
 
@@ -105,7 +105,8 @@ class MainWindow(QMainWindow):
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
         self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot)
+        #self.timer.timeout.connect(self.update_plot)
+        self.timer.timeout.connect(print("update"))
         self.timer.start()
 
     def update_plot(self):
