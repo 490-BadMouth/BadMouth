@@ -101,11 +101,12 @@ class MainWindow(QMainWindow):
 
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
-        self.timer.setInterval(1)
+        #self.timer.setInterval(50)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
     def update_plot(self):
+        worker = Worker(self.update_plot)
 
         if(not self.ui.frame_plot.isHidden()):
             data = self.stream.read(self.CHUNK)
