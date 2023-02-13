@@ -98,8 +98,6 @@ class MainWindow(QMainWindow):
 
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
-        #self.showFullScreen()
-
         self.ui_init()
 
         # Setup a timer to trigger the redraw by calling update_plot.
@@ -156,4 +154,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()
+    widget.showMaximized()
     sys.exit(app.exec_())
