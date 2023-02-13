@@ -66,8 +66,8 @@ class MainWindow(QMainWindow):
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
 
-        self.CHUNK = 256 * 2
-        FORMAT = pa.paInt8
+        self.CHUNK = 1024 * 2
+        FORMAT = pa.paInt16
         CHANNELS = 1
         RATE = 22500 # in Hz
 
@@ -98,7 +98,7 @@ class MainWindow(QMainWindow):
 
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
-        self.show()
+        self.showFullScreen()
 
         self.ui_init()
 

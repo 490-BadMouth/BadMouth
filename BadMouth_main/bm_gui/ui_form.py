@@ -107,6 +107,7 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
 #endif
         MainWindow.setPalette(palette)
+        MainWindow.setAutoFillBackground(False)
         MainWindow.setAnimated(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")

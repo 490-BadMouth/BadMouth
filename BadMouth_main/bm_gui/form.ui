@@ -455,6 +455,9 @@
   <property name="windowTitle">
    <string>BadMouth</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="animated">
    <bool>false</bool>
   </property>
