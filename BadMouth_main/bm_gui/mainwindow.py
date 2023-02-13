@@ -124,17 +124,6 @@ class MainWindow(QMainWindow):
             # Trigger the canvas to update and redraw.
             self.canvas.draw()
 
-    def set_page(self,i):
-        print("set_page called ",i)
-
-    def init_ui(self):
-        print("init ui")
-        self.ui.pushButton_home.clicked.connect(self.set_page(0))
-        self.ui.pushButton_eq.clicked.connect(self.set_page(1))
-        self.ui.pushButton_vis.clicked.connect(self.set_page(2))
-        self.ui.pushButton_stats.clicked.connect(self.set_page(1))
-        print("buttons connected")
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
