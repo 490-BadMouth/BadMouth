@@ -90,24 +90,27 @@ class MainWindow(QMainWindow):
         self.x = np.arange(0,2*self.CHUNK,2)
         self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.canvas.axes.set_ylim(-10000,10000)
+        self.canvas.axes.set_ylim(-20000,20000)
         self.canvas.axes.ser_xlim = (0,self.CHUNK)
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
         self.show()
 
+        self.ui_init()
+
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
-        self.timer.setInterval(1)
+        self.timer.setInterval(50)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
     def update_plot(self):
 
-        if(not self.ui.frame_plot.isHidden()):
+        if(self.ui.stackedWidget_content.currentIndex() == 2):
             data = self.stream.read(self.CHUNK)
             ydata = struct.unpack(str(self.CHUNK) + 'h', data)
 
@@ -123,6 +126,29 @@ class MainWindow(QMainWindow):
 
             # Trigger the canvas to update and redraw.
             self.canvas.draw()
+
+    def home_widget(self):
+        print("Hello I am Home")
+        self.ui.stackedWidget_content.setCurrentIndex(0)
+
+    def eq_widget(self):
+        self.ui.stackedWidget_content.setCurrentIndex(1)
+
+    def vis_widget(self):
+        self.ui.stackedWidget_content.setCurrentIndex(2)
+        
+    def stat_widget(self):
+        self.ui.stackedWidget_content.setCurrentIndex(3)
+    
+
+    def ui_init(self):
+        self.ui.stackedWidget_content.setCurrentIndex(0)
+        self.ui.pushButton_home.clicked.connect(self.home_widget)
+        self.ui.pushButton_eq.clicked.connect(self.eq_widget)
+        self.ui.pushButton_vis.clicked.connect(self.vis_widget)
+        self.ui.pushButton_stats.clicked.connect(self.stat_widget)
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
