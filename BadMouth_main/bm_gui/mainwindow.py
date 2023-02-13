@@ -1,5 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import sys
+import json
 import time
 import traceback
 import struct
@@ -103,8 +104,8 @@ class MainWindow(QMainWindow):
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
         self.timer.setInterval(50)
-        #self.timer.timeout.connect(self.update_plot)
-        self.timer.timeout.connect(print("update"))
+        self.timer.timeout.connect(self.update_plot)
+        #self.timer.timeout.connect(print("update"))
         self.timer.start()
 
     def update_plot(self):
