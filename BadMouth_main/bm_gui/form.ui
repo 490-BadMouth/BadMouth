@@ -1165,7 +1165,7 @@
         <bool>false</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_processing_toggle">
+      <widget class="QLabel" name="label_enabled">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -1181,6 +1181,27 @@
        </property>
        <property name="text">
         <string>Audio Processing: Enabled</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_disabled">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>0</y>
+         <width>801</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Audio Processing: Disabled</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -1395,7 +1416,7 @@
         <rect>
          <x>40</x>
          <y>260</y>
-         <width>921</width>
+         <width>933</width>
          <height>301</height>
         </rect>
        </property>
@@ -1606,6 +1627,38 @@
     <hint type="destinationlabel">
      <x>1130</x>
      <y>461</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_pato</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_disabled</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>417</x>
+     <y>289</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_pato</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_enabled</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1146</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>74</y>
     </hint>
    </hints>
   </connection>

@@ -141,13 +141,9 @@ class MainWindow(QMainWindow):
     def stat_widget(self):
         self.ui.stackedWidget_content.setCurrentIndex(3)
     
-
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
-        if(self.ui.pushButton_pato.isChecked):
-            self.ui.label_processing_toggle.setText("Audio Processing: Enabled")
-        else:
-            self.ui.label_processing_toggle.setText("Audio Processing: Disabled")
+        self.ui.label_enabled.setHidden(True)
         self.ui.pushButton_home.clicked.connect(self.home_widget)
         self.ui.pushButton_eq.clicked.connect(self.eq_widget)
         self.ui.pushButton_vis.clicked.connect(self.vis_widget)
