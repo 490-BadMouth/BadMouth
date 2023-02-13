@@ -98,7 +98,7 @@ class MainWindow(QMainWindow):
 
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
-        self.showFullScreen()
+        #self.showFullScreen()
 
         self.ui_init()
 
