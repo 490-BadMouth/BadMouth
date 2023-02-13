@@ -1106,7 +1106,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <property name="" stdset="0">
       <number>0</number>
@@ -1373,7 +1373,7 @@
         <rect>
          <x>280</x>
          <y>50</y>
-         <width>421</width>
+         <width>521</width>
          <height>161</height>
         </rect>
        </property>
