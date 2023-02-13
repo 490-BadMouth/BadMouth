@@ -365,7 +365,7 @@ class Ui_MainWindow(object):
         self.page_stats.setObjectName(u"page_stats")
         self.label_2 = QLabel(self.page_stats)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(280, 50, 421, 161))
+        self.label_2.setGeometry(QRect(280, 50, 521, 161))
         self.label_2.setFont(font2)
         self.lcdNumber_4 = QLCDNumber(self.page_stats)
         self.lcdNumber_4.setObjectName(u"lcdNumber_4")
@@ -381,7 +381,7 @@ class Ui_MainWindow(object):
         self.dial_treb.valueChanged.connect(self.lcdNumber.display)
 
         self.pushButton_home.setDefault(False)
-        self.stackedWidget_content.setCurrentIndex(0)
+        self.stackedWidget_content.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
