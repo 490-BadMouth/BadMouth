@@ -61,35 +61,6 @@ class MplCanvas(FigureCanvasQTAgg):
 
 class MainWindow(QMainWindow):
 
-    def update_plot(self):
-
-        data = self.stream.read(self.CHUNK)
-        ydata = struct.unpack(str(self.CHUNK) + 'h', data)
-
-        if self._plot_ref is None:
-            # First time we have no plot reference, so do a normal plot.
-            # .plot returns a list of line <reference>s, as we're
-            # only getting one we can take the first element.
-            plot_refs = self.canvas.axes.plot(self.x, ydata, 'r')
-            self._plot_ref = plot_refs[0]
-        else:
-            # We have a reference, we can use it to update the data for that line.
-            self._plot_ref.set_ydata(ydata)        
-
-        # Trigger the canvas to update and redraw.
-        self.canvas.draw()
-
-    def set_page(self,i):
-        self.ui.stackedWidget_content.setCurrentIndex(i)
-
-    def init_ui(self):
-        print("init ui")
-        self.ui.pushButton_home.clicked.connect(set_page(0))
-        self.ui.pushButton_eq.clicked.connect(set_page(1))
-        self.ui.pushButton_vis.clicked.connect(set_page(2))
-        self.ui.pushButton_stats.clicked.connect(set_page(3))
-        print("buttons connected")
-
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 
@@ -124,19 +95,49 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.init_ui()
-        self.ui.gridLayout_plot.addWidget(self.canvas)
+        #self.ui.gridLayout_plot.addWidget(self.canvas)
 
         self.show()
 
         # Setup a timer to trigger the redraw by calling update_plot.
-        self.timer = QTimer()
+        """self.timer = QTimer()
         self.timer.setInterval(1)
         self.timer.timeout.connect(self.update_plot)
-        self.timer.start()
+        self.timer.start()"""
+
+    def update_plot(self):
+
+        if(self.ui.stackedWidget_content.currentIndex()==2):
+            data = self.stream.read(self.CHUNK)
+            ydata = struct.unpack(str(self.CHUNK) + 'h', data)
+
+            if self._plot_ref is None:
+                # First time we have no plot reference, so do a normal plot.
+                # .plot returns a list of line <reference>s, as we're
+                # only getting one we can take the first element.
+                plot_refs = self.canvas.axes.plot(self.x, ydata, 'r')
+                self._plot_ref = plot_refs[0]
+            else:
+                # We have a reference, we can use it to update the data for that line.
+                self._plot_ref.set_ydata(ydata)        
+
+            # Trigger the canvas to update and redraw.
+            self.canvas.draw()
+
+    def set_page(self,i):
+        print("set_page called ",i)
+
+    def init_ui(self):
+        print("init ui")
+        self.ui.pushButton_home.clicked.connect(self.set_page(0))
+        self.ui.pushButton_eq.clicked.connect(self.set_page(1))
+        self.ui.pushButton_vis.clicked.connect(self.set_page(2))
+        self.ui.pushButton_stats.clicked.connect(self.set_page(1))
+        print("buttons connected")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()
+    widget.init_ui()
     sys.exit(app.exec_())

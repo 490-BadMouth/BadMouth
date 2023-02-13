@@ -327,8 +327,12 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.dial_2.valueChanged.connect(self.lcdNumber_3.display)
+        self.dial_3.valueChanged.connect(self.lcdNumber_2.display)
+        self.dial.valueChanged.connect(self.lcdNumber.display)
 
-        self.stackedWidget_content.setCurrentIndex(2)
+        self.pushButton_home.setDefault(False)
+        self.stackedWidget_content.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
