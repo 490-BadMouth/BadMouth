@@ -4,5 +4,5 @@
 
 pyside2-uic form.ui -o ui_form.py
 sed -i '/QPalette.PlaceholderText/d' ui_form.py 
-echo "Incompatible bits removed yaaay..." 
+echo "Incompatible bits removed..." 
 echo "Say hello to your brand-new, shiny GOOEY"
