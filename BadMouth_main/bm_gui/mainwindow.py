@@ -151,11 +151,37 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_vis.clicked.connect(self.vis_widget)
         self.ui.pushButton_stats.clicked.connect(self.stat_widget)
 
+class bm_config():
 
+    def __init__(self):
+        self.settings_file = 'bm_config'
+    
+    def load_settings():
+        if os.path.exists(bm_config_file):
+            with open(settings_file,'r') as f:
+                return json.load(f)
+        else:
+            print('config not found')
+            return {}
+    
+    def save_settings(settings):
+        with open(settings_file, 'w') as f:
+            json.dump(settings, f, indent=4)
+
+    def get_setting(key, default=None):
+        settings = load_settings()
+        return settings.get(key, default)
+
+    def set_setting(key, value):
+        settings = load_settings()
+        settings[key] = value
+        save_settings(settings)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
+    config = bm_config()
     widget.show()
     widget.showMaximized()
     sys.exit(app.exec_())
+
