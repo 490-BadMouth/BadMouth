@@ -1,12 +1,14 @@
 # This Python file uses the following encoding: utf-8
 import sys
+import time
+import traceback
 import struct
 import pyaudio as pa
 import numpy as np
 import matplotlib
 import random
-from PySide2.QtWidgets import QApplication, QMainWindow
-from PySide2.QtCore import QTimer
+from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
+from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
@@ -15,6 +17,40 @@ from ui_form import Ui_MainWindow
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
+
+class Worker(QRunnable):
+    '''
+    Worker thread
+
+    Inherits from QRunnable to handler worker thread setup, signals and wrap-up.
+
+    :param callback: The function callback to run on this worker thread. Supplied args and
+                     kwargs will be passed through to the runner.
+    :type callback: function
+    :param args: Arguments to pass to the callback function
+    :param kwargs: Keywords to pass to the callback function
+
+    '''
+
+    def __init__(self, fn, *args, **kwargs):
+        super(Worker, self).__init__()
+
+        # Store constructor arguments (re-used for processing)
+        self.fn = fn
+        self.args = args
+        self.kwargs = kwargs
+
+    
+    @Slot()
+    def run(self):
+        '''
+        Initialise the runner function with passed args, kwargs.
+        '''
+
+        # Retrieve args/kwargs here; and fire processing using them
+        result = self.fn(*self.args, **self.kwargs)
+
+
 
 class MplCanvas(FigureCanvasQTAgg):
 
@@ -74,6 +110,11 @@ class MainWindow(QMainWindow):
             output=True,
             frames_per_buffer=self.CHUNK
         )        
+        
+        self._plot_ref = None
+
+        self.threadpool = QThreadPool()
+        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
         self.x = np.arange(0,2*self.CHUNK,2)
         self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
@@ -86,16 +127,11 @@ class MainWindow(QMainWindow):
         self.init_ui()
         self.ui.gridLayout_plot.addWidget(self.canvas)
 
-        # We need to store a reference to the plotted line
-        # somewhere, so we can apply the new data to it.
-        self._plot_ref = None
-        self.update_plot()
-
         self.show()
 
         # Setup a timer to trigger the redraw by calling update_plot.
         self.timer = QTimer()
-        self.timer.setInterval(10)
+        self.timer.setInterval(1)
         self.timer.timeout.connect(self.update_plot)
         self.timer.start()
 
