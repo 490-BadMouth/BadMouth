@@ -109,6 +109,7 @@ class MainWindow(QMainWindow):
         self.timer.start()
 
     def update_plot(self):
+        worker = Worker(self.update_plot)
 
         if(self.ui.stackedWidget_content.currentIndex() == 2):
             data = self.stream.read(self.CHUNK)

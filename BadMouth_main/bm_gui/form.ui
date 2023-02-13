@@ -464,16 +464,22 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>221</width>
+      <width>268</width>
       <height>681</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_buttons">
      <item>
       <widget class="QPushButton" name="pushButton_home">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -505,9 +511,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_eq">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -536,9 +548,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_vis">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -567,9 +585,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_stats">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>250</width>
          <height>125</height>
         </size>
        </property>
@@ -598,7 +622,14 @@
      </item>
     </layout>
    </widget>
+<<<<<<< HEAD
    <widget class="QFrame" name="frame_content">
+=======
+   <widget class="QFrame" name="frame_plot">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+>>>>>>> 82f50994bc17e11238b3d0c3cab9ef533e9fbb59
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -1078,8 +1109,40 @@
        <height>679</height>
       </rect>
      </property>
+<<<<<<< HEAD
      <property name="lineWidth">
       <number>0</number>
+=======
+     <layout class="QGridLayout" name="gridLayout_plot"/>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_eq">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>999</width>
+      <height>680</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>961</width>
+       <height>82</height>
+      </rect>
+>>>>>>> 82f50994bc17e11238b3d0c3cab9ef533e9fbb59
      </property>
      <property name="currentIndex">
       <number>1</number>
@@ -1253,6 +1316,9 @@
      <widget class="QWidget" name="page_stats"/>
     </widget>
    </widget>
+   <zorder>frame_eq</zorder>
+   <zorder>frame_plot</zorder>
+   <zorder>verticalLayoutWidget</zorder>
   </widget>
  </widget>
  <resources/>
@@ -1302,6 +1368,22 @@
     <hint type="destinationlabel">
      <x>1130</x>
      <y>461</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_home</sender>
+   <signal>clicked()</signal>
+   <receiver>frame_eq</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>146</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>36</y>
     </hint>
    </hints>
   </connection>
