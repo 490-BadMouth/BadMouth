@@ -475,7 +475,7 @@ class Ui_MainWindow(object):
         self.pushButton_pato.toggled.connect(self.label_enabled.setVisible)
 
         self.pushButton_home.setDefault(False)
-        self.stackedWidget_content.setCurrentIndex(3)
+        self.stackedWidget_content.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

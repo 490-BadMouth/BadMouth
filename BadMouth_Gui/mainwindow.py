@@ -9,13 +9,12 @@ import numpy as np
 import matplotlib
 import random
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
-from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool
+from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool, QSettings
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
-
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
@@ -50,7 +49,6 @@ class Worker(QRunnable):
 
         # Retrieve args/kwargs here; and fire processing using them
         result = self.fn(*self.args, **self.kwargs)
-
 
 
 class MplCanvas(FigureCanvasQTAgg):
