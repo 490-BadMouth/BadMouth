@@ -1526,9 +1526,9 @@
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>40</x>
          <y>510</y>
-         <width>571</width>
+         <width>661</width>
          <height>71</height>
         </rect>
        </property>
@@ -1560,7 +1560,7 @@
         <number>860</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="reset_stats">
        <property name="geometry">
         <rect>
          <x>840</x>
