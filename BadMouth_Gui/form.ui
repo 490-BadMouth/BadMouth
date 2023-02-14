@@ -1374,12 +1374,12 @@
       </widget>
      </widget>
      <widget class="QWidget" name="page_stats">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="bad_words_blocked">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>-20</y>
-         <width>521</width>
+         <x>230</x>
+         <y>-30</y>
+         <width>541</width>
          <height>161</height>
         </rect>
        </property>
@@ -1389,10 +1389,10 @@
         </font>
        </property>
        <property name="text">
-        <string>Bad Words Blocked</string>
+        <string>Bad Words Blocked:</string>
        </property>
       </widget>
-      <widget class="QLCDNumber" name="lcdNumber_4">
+      <widget class="QLCDNumber" name="main_count">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -1422,7 +1422,7 @@
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="s_disposed">
           <property name="font">
            <font>
             <pointsize>32</pointsize>
@@ -1434,7 +1434,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLCDNumber" name="lcdNumber">
+         <widget class="QLCDNumber" name="f_bomb_count">
           <property name="frameShape">
            <enum>QFrame::Panel</enum>
           </property>
@@ -1447,7 +1447,7 @@
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QLabel" name="label_4">
+         <widget class="QLabel" name="d_blocked">
           <property name="font">
            <font>
             <pointsize>32</pointsize>
@@ -1459,7 +1459,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLCDNumber" name="lcdNumber_3">
+         <widget class="QLCDNumber" name="s_disposed_count">
           <property name="frameShape">
            <enum>QFrame::Panel</enum>
           </property>
@@ -1472,7 +1472,7 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="f_bombs">
           <property name="font">
            <font>
             <pointsize>32</pointsize>
@@ -1484,7 +1484,7 @@
          </widget>
         </item>
         <item row="0" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_5">
+         <widget class="QLCDNumber" name="d_blocked_count">
           <property name="frameShape">
            <enum>QFrame::Panel</enum>
           </property>
@@ -1497,7 +1497,7 @@
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QLabel" name="label_5">
+         <widget class="QLabel" name="ass_covered">
           <property name="font">
            <font>
             <pointsize>32</pointsize>
@@ -1509,7 +1509,7 @@
          </widget>
         </item>
         <item row="1" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_6">
+         <widget class="QLCDNumber" name="ass_count">
           <property name="frameShape">
            <enum>QFrame::Panel</enum>
           </property>
@@ -1523,7 +1523,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="nasty_spoken">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -1541,7 +1541,7 @@
         <string>Other Nasty Words Spoken:</string>
        </property>
       </widget>
-      <widget class="QLCDNumber" name="lcdNumber_7">
+      <widget class="QLCDNumber" name="nasty_count">
        <property name="geometry">
         <rect>
          <x>690</x>

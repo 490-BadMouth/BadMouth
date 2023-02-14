@@ -141,6 +141,14 @@ class MainWindow(QMainWindow):
     def stat_widget(self):
         self.ui.stackedWidget_content.setCurrentIndex(3)
     
+    def reset_widget(self):
+        self.ui.main_count.display(0)
+        self.ui.f_bomb_count.display(0)
+        self.ui.s_disposed_count.display(0)
+        self.ui.ass_count.display(0)
+        self.ui.nasty_count.display(0)
+        self.ui.d_blocked_count.display(0)
+
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
         self.ui.label_enabled.setHidden(True)
@@ -148,6 +156,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_eq.clicked.connect(self.eq_widget)
         self.ui.pushButton_vis.clicked.connect(self.vis_widget)
         self.ui.pushButton_stats.clicked.connect(self.stat_widget)
+        self.ui.reset_stats.clicked.connect(self.reset_widget)
 
 class bm_config():
 
