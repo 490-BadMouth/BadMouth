@@ -1,11 +1,17 @@
-import machine, time, neopixel
+from machine import Pin
+import time, neopixel
 from rotary_irq_rp2 import RotaryIRQ
 
-# 16 neopixels, gpio pin 0
-pixels = neopixel.NeoPixel(machine.Pin(0), 16)
+print("Running")
 
-r = RotaryIRQ(pin_num_clk=15, 
-              pin_num_dt=13, 
+led = Pin(25, Pin.OUT) #Onboard LED
+
+# 16 neopixels, gpio pin 0
+np = neopixel.NeoPixel(machine.Pin(0), 16)
+np[0] = (15,0,0)
+
+r = RotaryIRQ(pin_num_clk=14, 
+              pin_num_dt=15, 
               min_val=0, 
               max_val=15, 
               reverse=True, 
@@ -19,8 +25,9 @@ while True:
     if val_old != val_new:
         if val_old > val_new:
             np[val_old] = (0, 0, 0)
-        np[val_new] = (6*val_new, 96-(6*val_new), 0)
+        np[val_new] = (15-val_new, val_new, 0)
+        np.write()
         val_old = val_new
-        
+        led.toggle()
         
     time.sleep_ms(50)
