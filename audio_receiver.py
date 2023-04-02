@@ -7,7 +7,8 @@ FORMAT = "s16le"  # Little-endian 16-bit signed integer format
 CHANNELS = 1
 RATE = 44100
 LISTEN_PORT = 5000
-PIPE_PATH = "/tmp/Badmouth"
+PIPE_PATH = "/tmp/Badmouth" # path for unix system
+# PIPE_PATH = "./Badmouth"  # path for windows system
 
 # Set up UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
