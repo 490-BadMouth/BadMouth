@@ -1,3 +1,4 @@
+
 import pyaudio
 import socket
 import struct
@@ -7,7 +8,7 @@ CHUNK = 1024 * 4
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100  # CD quality audio
-DEST_IP = "127.0.0.1"  # Replace with the IP address of your desktop computer
+DEST_IP = "HOST_IP"  # Replace with the IP address of your desktop computer
 DEST_PORT = 5000
 
 # Set up PyAudio
