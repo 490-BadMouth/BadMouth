@@ -65,10 +65,10 @@ class MainWindow(QMainWindow):
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
 
-        self.CHUNK = 1024 * 2
+        self.CHUNK = 1024 * 4
         FORMAT = pa.paInt16
         CHANNELS = 1
-        RATE = 22500 # in Hz
+        RATE = 48000 # in Hz
 
         p = pa.PyAudio()
 
@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
 
         self.x = np.arange(0,2*self.CHUNK,2)
         self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.canvas = MplCanvas(self, width=5, height=4, dpi=150)
         self.canvas.axes.set_ylim(-20000,20000)
         self.canvas.axes.ser_xlim = (0,self.CHUNK)
 
