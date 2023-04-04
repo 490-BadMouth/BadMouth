@@ -1,6 +1,8 @@
-#!/bin/bash
+pactl --version
+pactl list short modules | awk '/source_name=Badmouth/ {print $2, $3}\'
+echo "Testing...Testing 1...2...3..."
 if pactl list short modules | grep -q "source_name=Badmouth file=/tmp/Badmouth" ; then
-    echo 'Virtual Mic Exists: Module #'
+    echo -n 'Virtual Mic Exists: Module # '
     module="$(pactl list short modules | awk '/source_name=Badmouth/ {print $1}')"
     echo "$module"
 else
@@ -11,3 +13,5 @@ else
     fi
     echo $(pactl list short modules | awk '/source_name=Badmouth/ {print $1}') >> module_number.txt
 fi
+
+echo -e "El Pato lives..."
