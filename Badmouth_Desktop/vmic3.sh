@@ -10,8 +10,8 @@ else
     pactl load-module module-pipe-source source_name=Badmouth file=/tmp/Badmouth format=s16le rate=44100 channels=1
     if test -f module_number.txt; then
         rm -rf module_number.txt
+    else
+        echo 'Virtual Mic creation failed.'
     fi
     echo $(pactl list short modules | awk '/source_name=Badmouth/ {print $1}') >> module_number.txt
 fi
-
-echo -e "El Pato lives..."
