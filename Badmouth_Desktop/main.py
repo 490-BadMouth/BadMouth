@@ -55,6 +55,7 @@ class MainWindow(QMainWindow):
 
         # Image
         self.image_label = QLabel()
+        #pixmap = QPixmap("pain.png")
         pixmap = QPixmap("bad duck.png")
         self.image_label.setPixmap(pixmap)
         self.image_label.setScaledContents(True)
