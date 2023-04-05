@@ -53,18 +53,25 @@ class MainWindow(QMainWindow):
         self.output_text.setFixedSize(300,800)
         layout.addWidget(self.output_text)
 
-        # Image
+        # # Pepe Image
+        # self.image_label = QLabel()
+        # pixmap = QPixmap("pain.png")
+        # self.image_label.setPixmap(pixmap)
+        # self.image_label.setScaledContents(True)
+        # layout.addWidget(self.image_label)
+
+        # Duck Image
         self.image_label = QLabel()
-        #pixmap = QPixmap("pain.png")
         pixmap = QPixmap("bad duck.png")
-        self.image_label.setPixmap(pixmap)
+        scaled_pixmap = pixmap.scaled(256, 232, Qt.AspectRatioMode.KeepAspectRatio) #fix duck aspect ratio
+        self.image_label.setPixmap(scaled_pixmap) #for scaled pixmap
         self.image_label.setScaledContents(True)
         layout.addWidget(self.image_label)
 
         central_widget.setLayout(layout)
         self.setCentralWidget(central_widget)
         # Set window size and aspect ratio
-        self.setFixedSize(300,450)
+        self.setFixedSize(256,400)
 
     def set_status_indicator_color(self, color_name):
         palette = self.status_indicator.palette()
