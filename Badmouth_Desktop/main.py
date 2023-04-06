@@ -123,11 +123,13 @@ class MainWindow(QMainWindow):
             if data == b"connected":
                 print("Connected.")
                 self.append_output_signal.emit("BadMouth connection established, beginning stream...\n")
+                self.running = True
                 break
 
         self.set_status_indicator_color("green")
         try:
             print("Opening pipe.")
+            self.runner_indicator = True            
             with open(PIPE_PATH, "wb") as pipe:
                 self.set_status_indicator_color("green")
                 while True:
@@ -140,17 +142,18 @@ class MainWindow(QMainWindow):
             self.sock.close()
 
     def update_running_indicator(self):
-        self.indicator_i += 1
-        new_txt = self.indicator_text[(self.indicator_i + 1) % 4]
-        self.running_indicator.setText(new_txt)
+        if self.runner_indicator:
+            self.indicator_i += 1
+            new_txt = self.indicator_text[(self.indicator_i + 1) % 4]
+            self.running_indicator.setText(new_txt)
 
-        # Remove the current running indicator character
-        self.output_text.moveCursor(QTextCursor.End)
-        self.output_text.textCursor().deletePreviousChar()
+            # Remove the current running indicator character
+            self.output_text.moveCursor(QTextCursor.End)
+            self.output_text.textCursor().deletePreviousChar()
 
-        # Add the updated running indicator character
-        self.output_text.moveCursor(QTextCursor.End)
-        self.output_text.insertPlainText(self.running_indicator.text())
+            # Add the updated running indicator character
+            self.output_text.moveCursor(QTextCursor.End)
+            self.output_text.insertPlainText(self.running_indicator.text())
 
     def running_indicator_init(self):
         # Initialize running indicator
@@ -158,6 +161,7 @@ class MainWindow(QMainWindow):
         self.indicator_text = "|/-\\"
         self.indicator_i = 0
         self.running_indicator.setText("|")
+        self.runner_indicator = False
 
         # Set up a timer to update the running indicator
         self.running_indicator_timer = QTimer()
