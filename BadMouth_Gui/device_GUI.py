@@ -79,6 +79,7 @@ class MainWindow(QMainWindow):
                 break
             if output:
                 self.append_output_signal.emit(output)
+                
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
         self.ui.label_enabled.setHidden(True)
