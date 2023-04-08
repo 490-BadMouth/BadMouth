@@ -8,6 +8,7 @@ import pyaudio as pa
 import numpy as np
 import matplotlib
 import random
+import PySide2
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
 from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool, QSettings
 # Important:
@@ -18,41 +19,22 @@ from ui_form import Ui_MainWindow
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
+class MplCanvas(FigureCanvasQTAgg):
+
+    def __init__(self, parent=None, width=5, height=4, dpi=100):
+        fig = Figure(figsize=(width,height),dpi=dpi)
+        self.axes = fig.add_subplot(111)
+        super(MplCanvas, self).__init__(fig)
+
+
 class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
-
-        self.x = np.arange(0,2*self.CHUNK,2)
-        self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.canvas.axes.set_ylim(-20000,20000)
-        self.canvas.axes.ser_xlim = (0,self.CHUNK)
-
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
         self.ui_init()
-
-    def update_plot(self):
-        worker = Worker(self.update_plot)
-
-        if(self.ui.stackedWidget_content.currentIndex() == 2):
-            data = self.stream.read(self.CHUNK)
-            ydata = struct.unpack(str(self.CHUNK) + 'h', data)
-
-            if self._plot_ref is None:
-                # First time we have no plot reference, so do a normal plot.
-                # .plot returns a list of line <reference>s, as we're
-                # only getting one we can take the first element.
-                plot_refs = self.canvas.axes.plot(self.x, ydata, 'r')
-                self._plot_ref = plot_refs[0]
-            else:
-                # We have a reference, we can use it to update the data for that line.
-                self._plot_ref.set_ydata(ydata)        
-
-            # Trigger the canvas to update and redraw.
-            self.canvas.draw()
 
     def home_widget(self):
         print("Hello I am Home")
@@ -89,7 +71,6 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
-    config = bm_config()
     widget.show()
     widget.showMaximized()
     sys.exit(app.exec_())
