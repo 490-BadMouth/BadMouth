@@ -1,5 +1,8 @@
 # This Python file uses the following encoding: utf-8
 import sys
+import socket
+from subprocess import Popen, PIPE, call
+import threading
 import json
 import time
 import traceback
@@ -8,7 +11,6 @@ import pyaudio as pa
 import numpy as np
 import matplotlib
 import random
-import PySide2
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
 from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool, QSettings
 # Important:
@@ -18,6 +20,9 @@ from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool
 from ui_form import Ui_MainWindow
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
+
+#Bash script for virtual mic setup through Port Audio
+BASH_SCRIPT = "bash audio_sender_v3.sh"  
 
 class MplCanvas(FigureCanvasQTAgg):
 
@@ -33,7 +38,11 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        
+        # Run the bash script in a separate thread to avoid blocking the GUI
+        print("Running Bash Script...")
+        self.run_bash_script()
+        
         self.ui_init()
 
     def home_widget(self):
@@ -56,6 +65,12 @@ class MainWindow(QMainWindow):
         self.ui.ass_count.display(0)
         self.ui.nasty_count.display(0)
         self.ui.d_blocked_count.display(0)
+
+    def run_bash_script(self):
+        #call(BASH_SCRIPT)
+        self.process = Popen([BASH_SCRIPT], stdout=PIPE, stderr=PIPE, universal_newlines=True, bufsize=0, shell=True)
+        self.process_output_reader_thread = threading.Thread(target=self.read_process_output)
+        self.process_output_reader_thread.start()
 
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
