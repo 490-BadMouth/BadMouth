@@ -22,7 +22,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
 #Bash script for virtual mic setup through Port Audio
-BASH_SCRIPT = "bash audio_sender_v3.sh"  
+BASH_SCRIPT = "python3 audio_sender_v3.py"  
 
 class MplCanvas(FigureCanvasQTAgg):
 
@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         
         # Run the bash script in a separate thread to avoid blocking the GUI
-        print("Running Bash Script...")
+        print("Running Audio Sender Script...")
         self.run_bash_script()
         
         self.ui_init()
