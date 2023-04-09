@@ -1,9 +1,10 @@
 import sys
+import os
 import socket
 from subprocess import Popen, PIPE, call
 import threading
 from PySide6.QtCore import Qt, Signal, QTimer
-from PySide6.QtWidgets import QApplication, QMainWindow, QTextEdit, QVBoxLayout, QWidget, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QTextEdit, QVBoxLayout,QHBoxLayout, QWidget, QLabel, QDial, QLCDNumber
 from PySide6.QtGui import QColor, QPalette, QTextCursor, QPixmap
 
 #Bash script for virtual mic setup through Port Audio
@@ -33,45 +34,63 @@ class MainWindow(QMainWindow):
         self.run_bash_script()
 
         print("Attempting to connect stream...")
-        self.connect_stream()
+        self.stream_init()
 
         self.running_indicator_init()
 
-
-
     def init_ui(self):
         central_widget = QWidget()
-        layout = QVBoxLayout()
+        main_layout = QHBoxLayout()
+
+        left_column_layout = QVBoxLayout()
 
         self.status_indicator = QLabel("Status")
         self.status_indicator.setAutoFillBackground(True)
         self.set_status_indicator_color("red")
-        layout.addWidget(self.status_indicator)
+        left_column_layout.addWidget(self.status_indicator)
 
         self.output_text = QTextEdit()
         self.output_text.setReadOnly(True)
-        self.output_text.setFixedSize(300,800)
-        layout.addWidget(self.output_text)
+        self.output_text.setFixedSize(256, 400)
+        left_column_layout.addWidget(self.output_text)
 
-        # # Pepe Image
-        # self.image_label = QLabel()
-        # pixmap = QPixmap("pain.png")
-        # self.image_label.setPixmap(pixmap)
-        # self.image_label.setScaledContents(True)
-        # layout.addWidget(self.image_label)
-
-        # Duck Image
         self.image_label = QLabel()
         pixmap = QPixmap("bad duck.png")
-        scaled_pixmap = pixmap.scaled(256, 232, Qt.AspectRatioMode.KeepAspectRatio) #fix duck aspect ratio
-        self.image_label.setPixmap(scaled_pixmap) #for scaled pixmap
+        scaled_pixmap = pixmap.scaled(256, 232, Qt.AspectRatioMode.KeepAspectRatio)  # fix duck aspect ratio
+        self.image_label.setPixmap(scaled_pixmap)  # for scaled pixmap
         self.image_label.setScaledContents(True)
-        layout.addWidget(self.image_label)
+        left_column_layout.addWidget(self.image_label)
 
-        central_widget.setLayout(layout)
+        main_layout.addLayout(left_column_layout)
+
+        right_column_layout = QVBoxLayout()
+
+        # Add dial widget
+        self.volume_dial = QDial()
+        self.volume_dial.setRange(0, 100)
+        self.volume_dial.valueChanged.connect(self.set_microphone_volume)
+        self.volume_dial.setFixedSize(256, 232)
+
+        # Add 7-segment display
+        self.volume_display = QLCDNumber()
+        self.volume_display.setDigitCount(3)
+        # Update Display with dial
+        self.volume_dial.valueChanged.connect(self.volume_display.display)
+ 
+        right_column_layout.addWidget(self.volume_display)
+        right_column_layout.addWidget(self.volume_dial)
+
+        main_layout.addLayout(right_column_layout)
+
+        central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
         # Set window size and aspect ratio
-        self.setFixedSize(256,400)
+        self.setFixedSize(512, 800)
+
+    def set_microphone_volume(self, value):
+
+        # Set the microphone volume using the pactl command
+        os.system(f"pactl set-source-volume @DEFAULT_SOURCE@ {value}%")
 
     def set_status_indicator_color(self, color_name):
         palette = self.status_indicator.palette()
@@ -101,13 +120,13 @@ class MainWindow(QMainWindow):
             if output:
                 self.append_output_signal.emit(output)
 
-    def connect_stream(self):
+    def stream_init(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.settimeout(2)  # Added timeout to avoid blocking
-        self.process_poll_socket_connect = threading.Thread(target=self.poll_connection)
+        self.process_poll_socket_connect = threading.Thread(target=self.stream_connect)
         self.process_poll_socket_connect.start()
 
-    def poll_connection(self):
+    def stream_connect(self):
         while True:
             try:
                 self.sock.sendto(b"connect", (CORAL_IP, PORT))
@@ -132,13 +151,14 @@ class MainWindow(QMainWindow):
             self.runner_indicator = True            
             with open(PIPE_PATH, "wb") as pipe:
                 self.set_status_indicator_color("green")
-                while True:
+                while data is not None:
                     data, _ = self.sock.recvfrom(CHUNK * 4)
                     pipe.write(data)
         except Exception as e:
             print("Error while receiving audio stream: ", e)
-            self.append_output_signal.emit("Error while receiving audio stream: ", e)
+            self.append_output_signal.emit("Error while receiving audio stream.")
             self.set_status_indicator_color("red")
+            self.runner_indicator = False
             self.sock.close()
 
     def update_running_indicator(self):
@@ -154,6 +174,8 @@ class MainWindow(QMainWindow):
             # Add the updated running indicator character
             self.output_text.moveCursor(QTextCursor.End)
             self.output_text.insertPlainText(self.running_indicator.text())
+        else:
+            self.indicator_text = ""
 
     def running_indicator_init(self):
         # Initialize running indicator
