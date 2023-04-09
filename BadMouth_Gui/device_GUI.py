@@ -67,8 +67,6 @@ class MainWindow(QMainWindow):
             output = self.process.stdout.readline()
             if output == "" and self.process.poll() is not None:
                 break
-            if output:
-                self.append_output_signal.emit(output)
                 
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
