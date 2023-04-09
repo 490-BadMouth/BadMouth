@@ -1,18 +1,12 @@
 # This Python file uses the following encoding: utf-8
 import sys
-import socket
 from subprocess import Popen, PIPE, call
 import threading
-import json
-import time
-import traceback
-import struct
-import pyaudio as pa
-import numpy as np
-import matplotlib
-import random
+import pyaudio
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
-from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings
+from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings, Qt
+
+
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
@@ -26,10 +20,14 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
+        
+        # Set the window flags to be frameless
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        # Run the bash script in a separate thread to avoid blocking the GUI
+        # Run the Python script in a separate thread to avoid blocking the GUI
         print("Running Python Script...")
         self.run_python_script()
         
@@ -61,7 +59,7 @@ class MainWindow(QMainWindow):
         self.process = Popen([PYTHON_SCRIPT], stdout=PIPE, stderr=PIPE, universal_newlines=True, bufsize=0, shell=True)
         self.process_output_reader_thread = threading.Thread(target=self.read_process_output)
         self.process_output_reader_thread.start()
-    
+
     def read_process_output(self):
         while True:
             output = self.process.stdout.readline()
