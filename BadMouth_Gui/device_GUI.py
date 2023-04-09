@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib
 import random
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
-from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool, QSettings
+from PySide2.QtCore import QProcess, QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
@@ -22,7 +22,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
 #Bash script for virtual mic setup through Port Audio
-BASH_SCRIPT = "python3 audio_sender_v3.py"  
+PYTHON_SCRIPT = "python3 audio_sender_v3.py"  
 
 class MplCanvas(FigureCanvasQTAgg):
 
@@ -31,18 +31,28 @@ class MplCanvas(FigureCanvasQTAgg):
         self.axes = fig.add_subplot(111)
         super(MplCanvas, self).__init__(fig)
 
+class AudioSenderThread(QThread):
+    def __init__(self, script_path, parent=None):
+        super().__init__(parent)
+        self.script_path = script_path
+
+    def run(self):
+        exec(open(self.script_path).read())
 
 class MainWindow(QMainWindow):
+
+    append_output_signal = Signal(str)
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        # Run the bash script in a separate thread to avoid blocking the GUI
+        # Run the audio sender script in a separate QThread
         print("Running Audio Sender Script...")
-        self.run_bash_script()
-        
+        self.audio_sender_thread = AudioSenderThread("audio_sender_v3.py")
+        self.audio_sender_thread.start()
+
         self.ui_init()
 
     def home_widget(self):
@@ -66,20 +76,6 @@ class MainWindow(QMainWindow):
         self.ui.nasty_count.display(0)
         self.ui.d_blocked_count.display(0)
 
-    def run_bash_script(self):
-        #call(BASH_SCRIPT)
-        self.process = Popen([BASH_SCRIPT], stdout=PIPE, stderr=PIPE, universal_newlines=True, bufsize=0, shell=True)
-        self.process_output_reader_thread = threading.Thread(target=self.read_process_output)
-        self.process_output_reader_thread.start()
-    
-    def read_process_output(self):
-        while True:
-            output = self.process.stdout.readline()
-            if output == "" and self.process.poll() is not None:
-                break
-            if output:
-                self.append_output_signal.emit(output)
-                
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
         self.ui.label_enabled.setHidden(True)
@@ -90,11 +86,9 @@ class MainWindow(QMainWindow):
         self.ui.reset_stats.clicked.connect(self.reset_widget)
 
 
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()
     widget.showMaximized()
     sys.exit(app.exec_())
-
