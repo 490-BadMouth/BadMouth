@@ -169,7 +169,7 @@ class MainWindow(QMainWindow):
     def update_running_indicator(self):
         if self.runner_indicator:
             global indicator_i
-            new_txt = self.indicator_text[indicator_i % 4]
+            new_txt = self.indicator_text[(indicator_i % 4)]
             indicator_i += 1
             self.running_indicator.setText(new_txt)
 
@@ -178,11 +178,12 @@ class MainWindow(QMainWindow):
             self.output_text.textCursor().deletePreviousChar()
 
             # Add the updated running indicator character
-            #self.output_text.moveCursor(QTextCursor.End)
+            self.output_text.moveCursor(QTextCursor.End)
             self.output_text.insertPlainText(self.running_indicator.text())
         else:
-            self.indicator_text = "0"
-
+            self.indicator_text = "00"
+            self.running_indicator_init()
+            
     def running_indicator_init(self):
         # Initialize running indicator
         self.running_indicator = QLabel()
