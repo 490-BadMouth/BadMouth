@@ -16,6 +16,9 @@ CHUNK = 1024 * 4
 #Virtual Mic Path for pipe to connect
 PIPE_PATH = "/tmp/Badmouth"
 
+indicator_i = 0
+
+
 class MainWindow(QMainWindow):
     append_output_signal = Signal(str)
 
@@ -28,7 +31,7 @@ class MainWindow(QMainWindow):
 
         # Connect the append_output_signal to the append_output slot
         self.append_output_signal.connect(self.append_output)
-
+    
         # Run the bash script in a separate thread to avoid blocking the GUI
         print("Running Bash Script...")
         self.run_bash_script()
@@ -132,6 +135,7 @@ class MainWindow(QMainWindow):
                 self.sock.sendto(b"connect", (CORAL_IP, PORT))
                 data, _ = self.sock.recvfrom(CHUNK)
                 print(data)
+                self.runner_indicator = True
             except socket.timeout:  # Handle timeout exception
                 continue
             except Exception as e:
@@ -142,7 +146,7 @@ class MainWindow(QMainWindow):
             if data == b"connected":
                 print("Connected.")
                 self.append_output_signal.emit("BadMouth connection established, beginning stream...\n")
-                self.running = True
+                self.runner_indicator = True
                 break
 
         self.set_status_indicator_color("green")
@@ -151,6 +155,7 @@ class MainWindow(QMainWindow):
             self.runner_indicator = True            
             with open(PIPE_PATH, "wb") as pipe:
                 self.set_status_indicator_color("green")
+                self.runner_indicator = True
                 while data is not None:
                     data, _ = self.sock.recvfrom(CHUNK * 4)
                     pipe.write(data)
@@ -163,8 +168,9 @@ class MainWindow(QMainWindow):
 
     def update_running_indicator(self):
         if self.runner_indicator:
-            self.indicator_i += 1
-            new_txt = self.indicator_text[(self.indicator_i + 1) % 4]
+            global indicator_i
+            new_txt = self.indicator_text[indicator_i % 4]
+            indicator_i += 1
             self.running_indicator.setText(new_txt)
 
             # Remove the current running indicator character
@@ -172,16 +178,15 @@ class MainWindow(QMainWindow):
             self.output_text.textCursor().deletePreviousChar()
 
             # Add the updated running indicator character
-            self.output_text.moveCursor(QTextCursor.End)
+            #self.output_text.moveCursor(QTextCursor.End)
             self.output_text.insertPlainText(self.running_indicator.text())
         else:
-            self.indicator_text = ""
+            self.indicator_text = "0"
 
     def running_indicator_init(self):
         # Initialize running indicator
         self.running_indicator = QLabel()
         self.indicator_text = "|/-\\"
-        self.indicator_i = 0
         self.running_indicator.setText("|")
         self.runner_indicator = False
 

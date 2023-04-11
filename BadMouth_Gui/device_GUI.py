@@ -2,6 +2,7 @@
 import sys
 from subprocess import Popen, PIPE, call
 import threading
+import socket
 import pyaudio
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
 from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings, Qt
@@ -13,25 +14,63 @@ from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QS
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
 
-#Python script for virtual mic setup through Port Audio
-PYTHON_SCRIPT = "python3 audio_sender_v3.py"  
+CORAL_IP = "192.168.100.2"  # Replace with the Google Coral's static IP address
+PORT = 5000
+CHUNK = 512 * 6
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 44100
 
+class AudioThread(QThread):
+    def run(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.bind((CORAL_IP, PORT))
+
+        print("Waiting for connection...")
+
+        while True:
+            data, host_addr = sock.recvfrom(CHUNK)
+            if data == b"connect":
+                sock.sendto(b"connected", host_addr)
+                break
+
+        print("Connected to host @: ", host_addr)
+
+        p = pyaudio.PyAudio()
+        stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+
+        print("Sending audio stream to", host_addr)
+        try:
+            while True:
+                data = stream.read(CHUNK)
+                sock.sendto(data, host_addr)
+        except Exception as e:
+            print("Error while streaming audio:", e)
+        except KeyboardInterrupt:
+            print("Keyboard interrupt!!!")
+            stream.stop_stream()
+            stream.close()
+        finally:
+            stream.stop_stream()
+            stream.close()
+            p.terminate()
+            sock.close()
+            
 class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         
-        # Set the window flags to be frameless
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        # Set the window flags to be frameless, not frameless for demo
+        #self.setWindowFlags(Qt.FramelessWindowHint)
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        # Run the Python script in a separate thread to avoid blocking the GUI
-        print("Running Python Script...")
-        self.run_python_script()
-        
         self.ui_init()
+
+        self.audio_thread = AudioThread(self)
+        self.audio_thread.start()
 
     def home_widget(self):
         print("Hello I am Home")
@@ -53,18 +92,6 @@ class MainWindow(QMainWindow):
         self.ui.ass_count.display(0)
         self.ui.nasty_count.display(0)
         self.ui.d_blocked_count.display(0)
-
-    def run_python_script(self):
-        #call(PYTHON_SCRIPT)
-        self.process = Popen([PYTHON_SCRIPT], stdout=PIPE, stderr=PIPE, universal_newlines=True, bufsize=0, shell=True)
-        self.process_output_reader_thread = threading.Thread(target=self.read_process_output)
-        self.process_output_reader_thread.start()
-
-    def read_process_output(self):
-        while True:
-            output = self.process.stdout.readline()
-            if output == "" and self.process.poll() is not None:
-                break
                 
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
