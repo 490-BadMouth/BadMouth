@@ -12,7 +12,7 @@ BASH_SCRIPT = "bash vmic3.sh"
 #Connection Info
 CORAL_IP = "192.168.100.2"  # Replace with the Google Coral's static IP address
 PORT = 5000
-CHUNK = 1024 * 4
+CHUNK = 512 * 5
 #Virtual Mic Path for pipe to connect
 PIPE_PATH = "/tmp/Badmouth"
 

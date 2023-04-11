@@ -16,7 +16,7 @@ from ui_form import Ui_MainWindow
 
 CORAL_IP = "192.168.100.2"  # Replace with the Google Coral's static IP address
 PORT = 5000
-CHUNK = 512 * 6
+CHUNK = 512 * 5
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
