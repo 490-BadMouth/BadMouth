@@ -29,6 +29,8 @@ class MainWindow(QMainWindow):
         print("Initializing UI...")
         self.init_ui()
 
+        self.volume_dial.setValue(50)
+
         # Connect the append_output_signal to the append_output slot
         self.append_output_signal.connect(self.append_output)
     
@@ -77,6 +79,7 @@ class MainWindow(QMainWindow):
         # Add 7-segment display
         self.volume_display = QLCDNumber()
         self.volume_display.setDigitCount(3)
+
         # Update Display with dial
         self.volume_dial.valueChanged.connect(self.volume_display.display)
  
@@ -183,7 +186,7 @@ class MainWindow(QMainWindow):
         else:
             self.indicator_text = "00"
             self.running_indicator_init()
-            
+
     def running_indicator_init(self):
         # Initialize running indicator
         self.running_indicator = QLabel()
