@@ -13,4 +13,6 @@ while True:
     data = ser.read(10)  # Read data from UART0 of the Pico
     if data:
         print("Pico Received: ", data)
-    time.sleep(1)  # Add a delay between each send-receive cycle
+        ser.write('Hello from Coral Mini!'.encode()) # Send a response back to the Pico
+    time.sleep(0.5)  # Add a delay between each send-receive cycle
+

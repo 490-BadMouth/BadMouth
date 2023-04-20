@@ -1,34 +1,24 @@
 # Python program for the Pico slave mode
 import machine
 from machine import Pin
-import utime
+import time
 
-#led = Pin(25, Pin.OUT)
-#Rx_Pin = 2  # UART0 of the pico Rx
-#Tx_Pin = 3  # UART0 of the pico Tx
-#uart = machine.UART(1, baudrate=115200, tx=machine.Pin(Tx_Pin), rx=machine.Pin(Rx_Pin))
-# Creates uart object ^
+led = Pin(25, Pin.OUT)
+RX_PIN = 2   # Pin 2 for RX on Pico
+TX_PIN = 3   # Pin 3 for TX on Pico
 
-# Loop to receive and send data over UART
-#while True:
-#    if uart.any():
-#        led.value(1)
-#        data = uart.read(10)
-#        print("Received Mini: ", data)
-#        # Send message back
-#        uart.write("Hello from Pico".encode())
-#        led.value(0)  # Turn off the LED after sending data
-#    utime.sleep_ms(100)
 
-Rx_Pin = 2  # UART0 of the Pico Rx
-Tx_Pin = 3  # UART0 of the Pico Tx
-uart = machine.UART(1, baudrate=115200, tx=machine.Pin(Tx_Pin), rx=machine.Pin(Rx_Pin))
+# Create a UART object
+uart = machine.UART(1, baudrate=115200, tx=machine.Pin(TX_PIN), rx=machine.Pin(RX_PIN))
 
 while True:
     if uart.any():
+        led.value(1)
         data = uart.read(10)
-        print("Received from Coral Mini: ", data)
-        uart.write(b'ACK')  # Send "ACK" back to the Coral Mini
-    utime.sleep_ms(100)
+        print("Received data:", data)
+        # Send a response back
+        uart.write("Hello from Pico!".encode())
+    time.sleep(0.5)  # Add a delay between each send-receive cycle
+
 
 
