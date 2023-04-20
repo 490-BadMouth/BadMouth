@@ -1,11 +1,12 @@
 # Coral Mini Master Code
-import serial
+import machine
 import time
+import serial
 
 Rx_Pin = 10  # UART0 RX pin on the Coral Mini
 Tx_Pin = 8  # UART0 TX pin on the Coral Mini
 
-ser = serial.Serial('/dev/ttyS0', 115200, timeout=1)  # Set the timeout to 1 second
+ser = serial.Serial('/dev/ttyGS0', 115200)  # Set the timeout to 1 second
 
 while True:
     ser.write('Hello from the Coral Mini'.encode())  # Send data over UART0
