@@ -4,16 +4,15 @@ from machine import Pin
 import time
 
 led = Pin(25, Pin.OUT)
-RX_PIN = 2   # Pin 2 for RX on Pico
-TX_PIN = 3   # Pin 3 for TX on Pico
+RX_PIN = 5   # Pin 2 for RX on Pico
+TX_PIN = 4   # Pin 3 for TX on Pico
 
-
+led.value(1)
 # Create a UART object
 uart = machine.UART(1, baudrate=115200, tx=machine.Pin(TX_PIN), rx=machine.Pin(RX_PIN))
-
 while True:
     if uart.any():
-        led.value(1)
+        led.value(0)
         data = uart.read(10)
         print("Received data:", data)
         # Send a response back
