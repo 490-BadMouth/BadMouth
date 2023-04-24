@@ -1,0 +1,20 @@
+Input details: [{'name': 'audio_features', 'index': 1, 'shape': array([  1, 198,  32], dtype=int32), 'shape_signature': array([  1, 198,  32], dtype=int32), 'dtype': <class 'numpy.uint8'>, 'quantization': (1.0, 0), 'quantization_parameters': {'scales': array([1.], dtype=float32), 'zero_points': array([0], dtype=int32), 'quantized_dimension': 0}, 'sparsity_parameters': {}}]
+
+
+Output details: [{'name': 'Softmax', 'index': 0, 'shape': array([  1, 149], dtype=int32), 'shape_signature': array([  1, 149], dtype=int32), 'dtype': <class 'numpy.uint8'>, 'quantization': (0.00390625, 0), 'quantization_parameters': {'scales': array([0.00390625], dtype=float32), 'zero_points': array([0], dtype=int32), 'quantized_dimension': 0}, 'sparsity_parameters': {}}]
+
+
+audio_features [[[0 0 0 ... 0 0 0]
+  [0 0 0 ... 0 0 0]
+  [0 0 0 ... 0 0 0]
+  ...
+  [0 0 0 ... 0 0 0]
+  [0 0 0 ... 0 0 0]
+  [0 0 0 ... 0 0 0]]]
+
+
+Softmax [[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0]]

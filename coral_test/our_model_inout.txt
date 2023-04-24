@@ -1,0 +1,55 @@
+Input details: [{'name': 'serving_default_input_5:0', 'index': 0, 'shape': array([  1, 772, 257,   1], dtype=int32), 'shape_signature': array([  1, 772, 257,   1], dtype=int32), 'dtype': <class 'numpy.float32'>, 'quantization': (0.0, 0), 'quantization_parameters': {'scales': array([], dtype=float32), 'zero_points': array([], dtype=int32), 'quantized_dimension': 0}, 'sparsity_parameters': {}}]
+
+Output details: [{'name': 'StatefulPartitionedCall:0', 'index': 106, 'shape': array([1, 3], dtype=int32), 'shape_signature': array([1, 3], dtype=int32), 'dtype': <class 'numpy.float32'>, 'quantization': (0.0, 0), 'quantization_parameters': {'scales': array([], dtype=float32), 'zero_points': array([], dtype=int32), 'quantized_dimension': 0}, 'sparsity_parameters': {}}]
+
+
+serving_default_input_5:0 [[[[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]
+
+  [[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]
+
+  [[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]
+
+  ...
+
+  [[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]
+
+  [[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]
+
+  [[0.]
+   [0.]
+   [0.]
+   ...
+   [0.]
+   [0.]
+   [0.]]]]
+StatefulPartitionedCall:0 [[0. 0. 0.]]
