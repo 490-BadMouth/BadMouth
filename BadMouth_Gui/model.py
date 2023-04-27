@@ -216,7 +216,7 @@ def add_model_flags(parser):
   parser.add_argument(
       "--model_file",
       help="File path of TFlite model.",
-      default="voice_commands_v0.7_edgetpu.tflite")
+      default="MEL_CNN_MODEL_FIXED_SHAPE_edgetpu.tflite")
   parser.add_argument("--mic", default=None,
                       help="Optional: Input source microphone ID.")
   parser.add_argument(
