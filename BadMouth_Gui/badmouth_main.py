@@ -12,7 +12,7 @@ from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QS
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
-import run_model 
+
 from audio_stream import AudioThread
 
 class MainWindow(QMainWindow):
@@ -72,5 +72,5 @@ if __name__ == "__main__":
     widget = MainWindow()
     widget.show()
     widget.showMaximized()
-    run_model.main()
     sys.exit(app.exec_())
+

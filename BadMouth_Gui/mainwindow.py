@@ -26,6 +26,9 @@ class MainWindow(QMainWindow):
         # Set the window flags to be frameless, not frameless for demo
         #self.setWindowFlags(Qt.FramelessWindowHint)
         
+        self.page_index = 0
+        self.dial_index = 0
+
         self.filter_on = True
 
         self.ui = Ui_MainWindow()
@@ -42,42 +45,74 @@ class MainWindow(QMainWindow):
         self.audio_thread = AudioThread()
         self.audio_thread.start()
 
-        #self.focus_manager = FocusManager([self.ui.pushButton_home,
-        #                                    self.ui.pushButton_eq,
-        #                                    self.ui.pushButton_vis,
-        #                                    self.ui.pushButton_stats
-        #                                    ], self)
-
-
     def update_uart_data(self,data):
         print("UART Data Received:", data)
         self.ui.label_UART_in.setText(data)
         if data == 'U':
-            #self.focus_manager.focus_prev()
-            os.system('echo "Test"')
+            self.page_select('U')
+            print("Page Index: ",self.page_index)
         elif data == 'D':
-            #self.focus_manager.focus_next()
-            pass
+            self.page_select('D')
+            print("Page Index: ",self.page_index)
         elif data == 'L':
-            #self.focus_manager.focus_left()
-            pass
+            self.dial_select('L')
         elif data == 'R':
-            #self.focus_manager.focus_right()
-            pass
-        elif data[0] =='C':
-            sys.exit(app.exec_())
+            self.dial_select('R')
+        elif data =='C':
+             sys.exit(app.exec_())
+        else:
+            self.dial_update(int(data))
 
-    def home_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(0)
+    def update_dial_labels(self):
+        labels = [self.ui.label_bass, self.ui.label_mid, self.ui.label_treb, self.ui.label_vol]
+        for index, label in enumerate(labels):
+            if index == self.dial_index:
+                label.setStyleSheet("QLabel { color : red; }")
+            else:
+                label.setStyleSheet("QLabel { color : black; }")
+    
+    def update_page_buttons(self):
+        buttons = [self.ui.pushButton_home, self.ui.pushButton_eq, self.ui.pushButton_vis, self.ui.pushButton_stats]
+        for index, button in enumerate(buttons):
+            if index == self.page_index:
+                button.setStyleSheet("QPushButton { color : red; }")
+            else:
+                button.setStyleSheet("QPushButton { color : black; }")
 
-    def eq_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(1)
+    def page_select(self, direction):
+        if direction == 'U':
+            self.page_index = (self.page_index - 1) % 4
+            self.ui.stackedWidget_content.setCurrentIndex(self.page_index)
 
-    def vis_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(2)
-        
-    def stat_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(3)
+        elif direction == 'D':
+            self.page_index = (self.page_index + 1) % 4
+            self.ui.stackedWidget_content.setCurrentIndex(self.page_index)
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            self.update_dial_labels()
+        self.update_page_buttons()
+
+    def dial_select(self,direction):
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            if direction == 'L':
+                self.dial_index = (self.dial_index - 1) % 4
+            elif direction == 'R':
+                self.dial_index = (self.dial_index + 1) % 4
+            print("Dial Index: ",self.dial_index)
+            self.update_dial_labels()
+
+    def dial_update(self, value):
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            if self.dial_index == 0:
+                self.ui.dial_bass.setValue(value)
+            elif self.dial_index == 1:
+                self.ui.dial_mid.setValue(value)
+            elif self.dial_index == 2:
+                self.ui.dial_treb.setValue(value)
+            elif self.dial_index == 3:
+                self.ui.dial_vol.setValue(value)
+                volume = int((value/15.0) * 100)
+                print(f'pactl set-source-volume alsa_input.platform-sound.HiFi__hw_0_1__source {volume}%')
+                os.system(f'pactl set-source-volume alsa_input.platform-sound.HiFi__hw_0_1__source {volume}%')
     
     def reset_widget(self):
         self.ui.main_count.display(0)
@@ -93,63 +128,15 @@ class MainWindow(QMainWindow):
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
         self.ui.label_enabled.setHidden(True)
-        self.ui.pushButton_home.clicked.connect(self.home_widget)
-        self.ui.pushButton_eq.clicked.connect(self.eq_widget)
-        self.ui.pushButton_vis.clicked.connect(self.vis_widget)
-        self.ui.pushButton_stats.clicked.connect(self.stat_widget)
-        self.ui.reset_stats.clicked.connect(self.reset_widget)
+        #self.ui.pushButton_home.clicked.connect(self.home_widget)
+        #self.ui.pushButton_eq.clicked.connect(self.eq_widget)
+        #self.ui.pushButton_vis.clicked.connect(self.vis_widget)
+        #self.ui.pushButton_stats.clicked.connect(self.stat_widget)
+        #self.ui.reset_stats.clicked.connect(self.reset_widget)
         self.ui.pushButton_pato.clicked.connect(self.toggle_filter)
-
-'''
-class FocusManager:
-    def __init__(self, pages, main_window):
-        self.pages = pages
-        self.main_window = main_window
-        self.page_index = 0
-        self.page_items = self.pages[self.page_index]
-        self.item_index = 0
-        self.set_focus(self.page_items[self.item_index])
-
-    def set_focus(self, widget):
-        if isinstance(widget, QWidget):
-            widget.setFocus()
-
-    def focus_next(self):
-        self.item_index = (self.item_index + 1) % len(self.page_items)
-        self.set_focus(self.page_items[self.item_index])
-
-    def focus_prev(self):
-        self.item_index = (self.item_index - 1) % len(self.page_items)
-        self.set_focus(self.page_items[self.item_index])
-
-    def activate(self):
-        item = self.page_items[self.item_index]
-        if isinstance(item, QAbstractButton):
-            item.click()
-
-    def focus_left(self):
-        self.page_up()
-
-    def focus_right(self):
-        self.page_down()
-
-    def page_up(self):
-        if self.page_index > 0:
-            self.page_index -= 1
-            self.page_items = self.pages[self.page_index]
-            self.item_index = 0
-            self.set_focus(self.page_items[self.item_index])
-
-    def page_down(self):
-        if self.page_index < len(self.pages) - 1:
-            self.page_index += 1
-            self.page_items = self.pages[self.page_index]
-            self.item_index = 0
-            self.set_focus(self.page_items[self.item_index])
-'''
+        self.update_page_buttons()
 
 if __name__ == "__main__":
-    os.system("export DISPLAY=:0.0") # Set GUI to display on LCD
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()

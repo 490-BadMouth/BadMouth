@@ -22,8 +22,6 @@ class AudioThread(QThread):
         self.rate = rate
         self.filter_on = False
         
-
-
     def run(self):
         self.stream_audio()
 
@@ -56,7 +54,6 @@ class AudioThread(QThread):
                 # This is where the pyaudio stream data is inputted into the filter and outputted to the socket.
                 #if(filter_on):
                  #   print("OOO LAWD ITS FILTERIN")
-
 
                 sock.sendto(data, host_addr)
         except Exception as e:
