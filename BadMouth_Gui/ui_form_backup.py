@@ -170,15 +170,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_buttons.addWidget(self.pushButton_stats)
 
-        self.label_UART_in = QLabel(self.verticalLayoutWidget)
-        self.label_UART_in.setObjectName(u"label_UART_in")
-        font1 = QFont()
-        font1.setPointSize(24)
-        self.label_UART_in.setFont(font1)
-        self.label_UART_in.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_buttons.addWidget(self.label_UART_in)
-
         self.frame_content = QFrame(self.centralwidget)
         self.frame_content.setObjectName(u"frame_content")
         self.frame_content.setGeometry(QRect(260, 20, 1001, 681))
@@ -235,9 +226,9 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
 #endif
         self.frame_content.setPalette(palette1)
-        font2 = QFont()
-        font2.setPointSize(10)
-        self.frame_content.setFont(font2)
+        font1 = QFont()
+        font1.setPointSize(10)
+        self.frame_content.setFont(font1)
         self.frame_content.setAutoFillBackground(False)
         self.frame_content.setFrameShape(QFrame.WinPanel)
         self.frame_content.setFrameShadow(QFrame.Sunken)
@@ -256,9 +247,9 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.pushButton_pato.sizePolicy().hasHeightForWidth())
         self.pushButton_pato.setSizePolicy(sizePolicy)
         self.pushButton_pato.setMinimumSize(QSize(0, 0))
-        font3 = QFont()
-        font3.setPointSize(36)
-        self.pushButton_pato.setFont(font3)
+        font2 = QFont()
+        font2.setPointSize(36)
+        self.pushButton_pato.setFont(font2)
         icon = QIcon()
         icon.addFile(u"bad duck.png", QSize(), QIcon.Normal, QIcon.Off)
         icon.addFile(u"good duck.png", QSize(), QIcon.Normal, QIcon.On)
@@ -272,21 +263,21 @@ class Ui_MainWindow(object):
         self.label_enabled = QLabel(self.page_home)
         self.label_enabled.setObjectName(u"label_enabled")
         self.label_enabled.setGeometry(QRect(100, 0, 801, 61))
-        self.label_enabled.setFont(font3)
+        self.label_enabled.setFont(font2)
         self.label_enabled.setAlignment(Qt.AlignCenter)
         self.label_disabled = QLabel(self.page_home)
         self.label_disabled.setObjectName(u"label_disabled")
         self.label_disabled.setGeometry(QRect(110, 0, 801, 61))
-        self.label_disabled.setFont(font3)
+        self.label_disabled.setFont(font2)
         self.label_disabled.setAlignment(Qt.AlignCenter)
         self.stackedWidget_content.addWidget(self.page_home)
         self.page_eq = QWidget()
         self.page_eq.setObjectName(u"page_eq")
         self.horizontalLayoutWidget = QWidget(self.page_eq)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(30, 130, 951, 241))
+        self.horizontalLayoutWidget.setGeometry(QRect(20, 120, 961, 261))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setSpacing(150)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -314,49 +305,33 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.dial_treb)
 
-        self.dial_vol = QDial(self.horizontalLayoutWidget)
-        self.dial_vol.setObjectName(u"dial_vol")
-        self.dial_vol.setMinimumSize(QSize(0, 0))
-        self.dial_vol.setMinimum(-11)
-        self.dial_vol.setMaximum(11)
-        self.dial_vol.setNotchesVisible(True)
-
-        self.horizontalLayout.addWidget(self.dial_vol)
-
         self.horizontalLayoutWidget_2 = QWidget(self.page_eq)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 40, 971, 81))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 40, 961, 82))
         self.horizontalLayout_eq_labels = QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.horizontalLayout_eq_labels.setSpacing(0)
+        self.horizontalLayout_eq_labels.setSpacing(150)
         self.horizontalLayout_eq_labels.setObjectName(u"horizontalLayout_eq_labels")
         self.horizontalLayout_eq_labels.setContentsMargins(0, 0, 0, 0)
         self.label_bass = QLabel(self.horizontalLayoutWidget_2)
         self.label_bass.setObjectName(u"label_bass")
-        self.label_bass.setFont(font3)
+        self.label_bass.setFont(font2)
         self.label_bass.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_eq_labels.addWidget(self.label_bass)
 
         self.label_mid = QLabel(self.horizontalLayoutWidget_2)
         self.label_mid.setObjectName(u"label_mid")
-        self.label_mid.setFont(font3)
+        self.label_mid.setFont(font2)
         self.label_mid.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_eq_labels.addWidget(self.label_mid)
 
         self.label_treb = QLabel(self.horizontalLayoutWidget_2)
         self.label_treb.setObjectName(u"label_treb")
-        self.label_treb.setFont(font3)
+        self.label_treb.setFont(font2)
         self.label_treb.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_eq_labels.addWidget(self.label_treb)
-
-        self.label_vol = QLabel(self.horizontalLayoutWidget_2)
-        self.label_vol.setObjectName(u"label_vol")
-        self.label_vol.setFont(font3)
-        self.label_vol.setAlignment(Qt.AlignCenter)
-
-        self.horizontalLayout_eq_labels.addWidget(self.label_vol)
 
         self.horizontalLayoutWidget_3 = QWidget(self.page_eq)
         self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
@@ -370,23 +345,17 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_eq_7segs.addWidget(self.lcdNumber_bass)
 
-        self.lcdNumber_mid = QLCDNumber(self.horizontalLayoutWidget_3)
-        self.lcdNumber_mid.setObjectName(u"lcdNumber_mid")
-        self.lcdNumber_mid.setFrameShadow(QFrame.Sunken)
+        self.lcdNumber_2 = QLCDNumber(self.horizontalLayoutWidget_3)
+        self.lcdNumber_2.setObjectName(u"lcdNumber_2")
+        self.lcdNumber_2.setFrameShadow(QFrame.Sunken)
 
-        self.horizontalLayout_eq_7segs.addWidget(self.lcdNumber_mid)
+        self.horizontalLayout_eq_7segs.addWidget(self.lcdNumber_2)
 
         self.lcdNumber_treble = QLCDNumber(self.horizontalLayoutWidget_3)
         self.lcdNumber_treble.setObjectName(u"lcdNumber_treble")
         self.lcdNumber_treble.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_eq_7segs.addWidget(self.lcdNumber_treble)
-
-        self.lcdNumber_vol = QLCDNumber(self.horizontalLayoutWidget_3)
-        self.lcdNumber_vol.setObjectName(u"lcdNumber_vol")
-        self.lcdNumber_vol.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_eq_7segs.addWidget(self.lcdNumber_vol)
 
         self.stackedWidget_content.addWidget(self.page_eq)
         self.page_vis = QWidget()
@@ -403,7 +372,7 @@ class Ui_MainWindow(object):
         self.bad_words_blocked = QLabel(self.page_stats)
         self.bad_words_blocked.setObjectName(u"bad_words_blocked")
         self.bad_words_blocked.setGeometry(QRect(230, -30, 541, 161))
-        self.bad_words_blocked.setFont(font3)
+        self.bad_words_blocked.setFont(font2)
         self.main_count = QLCDNumber(self.page_stats)
         self.main_count.setObjectName(u"main_count")
         self.main_count.setGeometry(QRect(400, 90, 171, 91))
@@ -418,9 +387,9 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.s_disposed = QLabel(self.gridLayoutWidget_2)
         self.s_disposed.setObjectName(u"s_disposed")
-        font4 = QFont()
-        font4.setPointSize(32)
-        self.s_disposed.setFont(font4)
+        font3 = QFont()
+        font3.setPointSize(32)
+        self.s_disposed.setFont(font3)
 
         self.gridLayout.addWidget(self.s_disposed, 1, 0, 1, 1)
 
@@ -434,7 +403,7 @@ class Ui_MainWindow(object):
 
         self.d_blocked = QLabel(self.gridLayoutWidget_2)
         self.d_blocked.setObjectName(u"d_blocked")
-        self.d_blocked.setFont(font4)
+        self.d_blocked.setFont(font3)
 
         self.gridLayout.addWidget(self.d_blocked, 0, 2, 1, 1)
 
@@ -448,7 +417,7 @@ class Ui_MainWindow(object):
 
         self.f_bombs = QLabel(self.gridLayoutWidget_2)
         self.f_bombs.setObjectName(u"f_bombs")
-        self.f_bombs.setFont(font4)
+        self.f_bombs.setFont(font3)
 
         self.gridLayout.addWidget(self.f_bombs, 0, 0, 1, 1)
 
@@ -462,7 +431,7 @@ class Ui_MainWindow(object):
 
         self.ass_covered = QLabel(self.gridLayoutWidget_2)
         self.ass_covered.setObjectName(u"ass_covered")
-        self.ass_covered.setFont(font4)
+        self.ass_covered.setFont(font3)
 
         self.gridLayout.addWidget(self.ass_covered, 1, 2, 1, 1)
 
@@ -477,7 +446,7 @@ class Ui_MainWindow(object):
         self.nasty_spoken = QLabel(self.page_stats)
         self.nasty_spoken.setObjectName(u"nasty_spoken")
         self.nasty_spoken.setGeometry(QRect(40, 510, 661, 71))
-        self.nasty_spoken.setFont(font4)
+        self.nasty_spoken.setFont(font3)
         self.nasty_count = QLCDNumber(self.page_stats)
         self.nasty_count.setObjectName(u"nasty_count")
         self.nasty_count.setGeometry(QRect(690, 500, 181, 81))
@@ -493,12 +462,11 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget.raise_()
 
         self.retranslateUi(MainWindow)
-        self.dial_mid.valueChanged.connect(self.lcdNumber_mid.display)
+        self.dial_mid.valueChanged.connect(self.lcdNumber_2.display)
         self.dial_bass.valueChanged.connect(self.lcdNumber_bass.display)
         self.dial_treb.valueChanged.connect(self.lcdNumber_treble.display)
         self.pushButton_pato.toggled.connect(self.label_disabled.setHidden)
         self.pushButton_pato.toggled.connect(self.label_enabled.setVisible)
-        self.dial_vol.valueChanged.connect(self.lcdNumber_vol.display)
 
         self.pushButton_home.setDefault(False)
         self.stackedWidget_content.setCurrentIndex(1)
@@ -513,14 +481,12 @@ class Ui_MainWindow(object):
         self.pushButton_eq.setText(QCoreApplication.translate("MainWindow", u"Equalizer", None))
         self.pushButton_vis.setText(QCoreApplication.translate("MainWindow", u"Visualizer", None))
         self.pushButton_stats.setText(QCoreApplication.translate("MainWindow", u"Stats", None))
-        self.label_UART_in.setText(QCoreApplication.translate("MainWindow", u"UART TEXT", None))
         self.pushButton_pato.setText("")
         self.label_enabled.setText(QCoreApplication.translate("MainWindow", u"Audio Processing: Enabled", None))
         self.label_disabled.setText(QCoreApplication.translate("MainWindow", u"Audio Processing: Disabled", None))
         self.label_bass.setText(QCoreApplication.translate("MainWindow", u"Bass", None))
         self.label_mid.setText(QCoreApplication.translate("MainWindow", u"Mid", None))
         self.label_treb.setText(QCoreApplication.translate("MainWindow", u"Treble", None))
-        self.label_vol.setText(QCoreApplication.translate("MainWindow", u"Volume", None))
         self.bad_words_blocked.setText(QCoreApplication.translate("MainWindow", u"Bad Words Blocked:", None))
         self.s_disposed.setText(QCoreApplication.translate("MainWindow", u"Sh*ts Disposed of:", None))
         self.d_blocked.setText(QCoreApplication.translate("MainWindow", u"D*cks Blocked:", None))
