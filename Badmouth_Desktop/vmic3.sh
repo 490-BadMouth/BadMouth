@@ -12,8 +12,6 @@ else
     echo 'Virtual Mic Created: Module #'$module''
     if test -f "module_number.txt" ; then
         rm -rf "module_number.txt"
-    else
-        echo 'Virtual Mic creation failed.'
     fi
     echo $(pactl list short modules | awk '/source_name=Badmouth/ {print $1}') >> module_number.txt
 fi

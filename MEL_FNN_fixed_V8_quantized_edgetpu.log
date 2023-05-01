@@ -1,0 +1,9 @@
+Edge TPU Compiler version 16.0.384591198
+Input: MEL_FNN_fixed_V8_quantized.tflite
+Output: MEL_FNN_fixed_V8_quantized_edgetpu.tflite
+
+Operator                       Count      Status
+
+RESHAPE                        1          Mapped to Edge TPU
+SOFTMAX                        1          Mapped to Edge TPU
+FULLY_CONNECTED                2          Mapped to Edge TPU
