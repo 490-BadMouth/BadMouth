@@ -52,24 +52,27 @@ def main():
 
     # 16 neopixels, gpio pin 0
     np = neopixel.NeoPixel(machine.Pin(28), 16)
-    np[0] = (15,0,0)
+    np[13] = (0,15,0)
 
-    r = RotaryIRQ(pin_num_clk=15, 
-                pin_num_dt=14,
+    r = RotaryIRQ(pin_num_clk=14, 
+                pin_num_dt=15, 
                 min_val=0, 
                 max_val=15, 
-                reverse=True, 
+                reverse=True,
                 range_mode=RotaryIRQ.RANGE_BOUNDED,
-                pull_up = True)
-    
-    val_old = r.value()
+                pull_up=True)
+
+    val_old = 13
     while True:
         val_new = r.value()
         
         if val_old != val_new:
+            adjusted_old = (13-val_old) % 16
+            adjusted_new = (13-val_new) % 16
+
             if val_old > val_new:
-                np[val_old] = (0, 0, 0)
-            np[val_new] = (val_new, 15-val_new, 0)
+                np[adjusted_old] = (0, 0, 0)
+            np[adjusted_new] = (val_new, 15-val_new, 0)
             np.write()
             uart1.write(b'%i\n' % val_new)
             print("current value is: ", val_new)
