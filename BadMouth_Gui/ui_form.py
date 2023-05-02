@@ -261,7 +261,7 @@ class Ui_MainWindow(object):
         self.pushButton_pato.setFont(font3)
         icon = QIcon()
         icon.addFile(u"bad_duck.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon.addFile(u"good duck.png", QSize(), QIcon.Normal, QIcon.On)
+        icon.addFile(u"good_duck.png", QSize(), QIcon.Normal, QIcon.On)
         icon.addFile(u"bad_duck.png", QSize(), QIcon.Disabled, QIcon.Off)
         icon.addFile(u"bad_duck.png", QSize(), QIcon.Active, QIcon.Off)
         icon.addFile(u"bad_duck.png", QSize(), QIcon.Selected, QIcon.Off)
