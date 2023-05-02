@@ -1,7 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import sys, os
 from subprocess import Popen, PIPE, call
-
 from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication, QAbstractButton
 from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings, Qt
 

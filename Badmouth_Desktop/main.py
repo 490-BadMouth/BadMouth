@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         print("Initializing UI...")
         self.init_ui()
 
-        self.volume_dial.setValue(50)
+        self.volume_dial.setValue(100)
 
         # Connect the append_output_signal to the append_output slot
         self.append_output_signal.connect(self.append_output)

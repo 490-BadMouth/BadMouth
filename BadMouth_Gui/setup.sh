@@ -7,5 +7,5 @@ uart_path="/dev/ttyS1"
 mainwindow_path="/home/mendel/BadMouth/BadMouth_Gui/mainwindow.py"
 sudo chmod 777 "$uart_path"
 sudo chmod 777 "$mainwindow_path"
-# Run main window
+#Run main window
 python3 /home/mendel/BadMouth/BadMouth_Gui/mainwindow.py
