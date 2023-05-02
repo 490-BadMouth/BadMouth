@@ -1,3 +1,12 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import argparse
+import sys
+import model
+import numpy as np
+
 import pyaudio, threading, socket, numpy as np
 
 from PySide2.QtCore import QThread
@@ -54,8 +63,19 @@ class AudioThread(QThread):
                 # This is where the pyaudio stream data is inputted into the filter and outputted to the socket.
                 #if(filter_on):
                  #   print("OOO LAWD ITS FILTERIN")
+                # parser = argparse.ArgumentParser()
+                # model.add_model_flags(parser)
+                # args = parser.parse_args()
+                # interpreter = model.make_interpreter(args.model_file)
+                # interpreter.allocate_tensors()
+                # mic = args.mic if args.mic is None else int(args.mic)
+                # model.classify_audio(mic, interpreter,
+                #                     labels_file="labels.txt",
+                #                     result_callback=model.print_results,
+                #                     sample_rate_hz=int(args.sample_rate_hz),
+                #                     num_frames_hop=int(args.num_frames_hop))
+                    sock.sendto(data, host_addr)
 
-                sock.sendto(data, host_addr)
         except Exception as e:
             print("Error while streaming audio:", e)
         except KeyboardInterrupt:
