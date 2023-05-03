@@ -623,6 +623,21 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="label_UART_in">
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>UART TEXT</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QFrame" name="frame_content">
@@ -1212,15 +1227,15 @@
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>120</y>
-         <width>961</width>
-         <height>261</height>
+         <x>30</x>
+         <y>130</y>
+         <width>951</width>
+         <height>241</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
-         <number>150</number>
+         <number>0</number>
         </property>
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
@@ -1228,10 +1243,13 @@
         <item>
          <widget class="QDial" name="dial_bass">
           <property name="minimum">
-           <number>-11</number>
+           <number>0</number>
           </property>
           <property name="maximum">
-           <number>11</number>
+           <number>16</number>
+          </property>
+          <property name="value">
+           <number>8</number>
           </property>
           <property name="notchesVisible">
            <bool>true</bool>
@@ -1241,10 +1259,13 @@
         <item>
          <widget class="QDial" name="dial_mid">
           <property name="minimum">
-           <number>-11</number>
+           <number>0</number>
           </property>
           <property name="maximum">
-           <number>11</number>
+           <number>16</number>
+          </property>
+          <property name="value">
+           <number>8</number>
           </property>
           <property name="notchesVisible">
            <bool>true</bool>
@@ -1254,10 +1275,35 @@
         <item>
          <widget class="QDial" name="dial_treb">
           <property name="minimum">
-           <number>-11</number>
+           <number>0</number>
           </property>
           <property name="maximum">
-           <number>11</number>
+           <number>16</number>
+          </property>
+          <property name="value">
+           <number>8</number>
+          </property>
+          <property name="notchesVisible">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDial" name="dial_vol">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>16</number>
+          </property>
+          <property name="value">
+           <number>16</number>
           </property>
           <property name="notchesVisible">
            <bool>true</bool>
@@ -1271,13 +1317,13 @@
         <rect>
          <x>20</x>
          <y>40</y>
-         <width>961</width>
-         <height>82</height>
+         <width>971</width>
+         <height>81</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_eq_labels">
         <property name="spacing">
-         <number>150</number>
+         <number>0</number>
         </property>
         <item>
          <widget class="QLabel" name="label_bass">
@@ -1324,6 +1370,21 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QLabel" name="label_vol">
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Volume</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="horizontalLayoutWidget_3">
@@ -1344,7 +1405,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLCDNumber" name="lcdNumber_2">
+         <widget class="QLCDNumber" name="lcdNumber_mid">
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
@@ -1352,6 +1413,13 @@
         </item>
         <item>
          <widget class="QLCDNumber" name="lcdNumber_treble">
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLCDNumber" name="lcdNumber_vol">
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>
           </property>
@@ -1585,7 +1653,7 @@
   <connection>
    <sender>dial_mid</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber_2</receiver>
+   <receiver>lcdNumber_mid</receiver>
    <slot>display(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1609,8 +1677,8 @@
      <y>221</y>
     </hint>
     <hint type="destinationlabel">
-     <x>536</x>
-     <y>459</y>
+     <x>515</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>
@@ -1621,12 +1689,12 @@
    <slot>display(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1102</x>
-     <y>214</y>
+     <x>1003</x>
+     <y>225</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1130</x>
-     <y>461</y>
+     <x>998</x>
+     <y>462</y>
     </hint>
    </hints>
   </connection>
@@ -1659,6 +1727,22 @@
     <hint type="destinationlabel">
      <x>1083</x>
      <y>74</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_vol</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lcdNumber_vol</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1107</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1122</x>
+     <y>476</y>
     </hint>
    </hints>
   </connection>

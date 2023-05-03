@@ -1,143 +1,118 @@
 # This Python file uses the following encoding: utf-8
-import sys
-import json
-import time
-import traceback
-import struct
-import pyaudio as pa
-import numpy as np
-import matplotlib
-import random
-from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication
-from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThreadPool, QSettings
+import sys, os
+from subprocess import Popen, PIPE, call
+
+from PySide2.QtWidgets import QVBoxLayout, QLabel, QPushButton, QWidget, QMainWindow, QApplication, QAbstractButton
+from PySide2.QtCore import QTimer, QRunnable, Slot, Signal, QObject, QThread, QSettings, Qt
+
+# Run this in terminal to enable LCD: export DISPLAY=:0.0
+
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
 
-class Worker(QRunnable):
-    '''
-    Worker thread
-
-    Inherits from QRunnable to handler worker thread setup, signals and wrap-up.
-
-    :param callback: The function callback to run on this worker thread. Supplied args and
-                     kwargs will be passed through to the runner.
-    :type callback: function
-    :param args: Arguments to pass to the callback function
-    :param kwargs: Keywords to pass to the callback function
-
-    '''
-
-    def __init__(self, fn, *args, **kwargs):
-        super(Worker, self).__init__()
-
-        # Store constructor arguments (re-used for processing)
-        self.fn = fn
-        self.args = args
-        self.kwargs = kwargs
-
-    
-    @Slot()
-    def run(self):
-        '''
-        Initialise the runner function with passed args, kwargs.
-        '''
-
-        # Retrieve args/kwargs here; and fire processing using them
-        result = self.fn(*self.args, **self.kwargs)
-
-
-class MplCanvas(FigureCanvasQTAgg):
-
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
-        fig = Figure(figsize=(width,height),dpi=dpi)
-        self.axes = fig.add_subplot(111)
-        super(MplCanvas, self).__init__(fig)
+from audio_thread import AudioThread
+from uart_thread import UartThread
 
 class MainWindow(QMainWindow):
 
+    uart_data_received = Signal(str)
+
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
-
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-
-        self.CHUNK = 1024 * 4
-        FORMAT = pa.paInt16
-        CHANNELS = 1
-        RATE = 48000 # in Hz
-
-        p = pa.PyAudio()
-
-        self.stream = p.open(
-            format = FORMAT,
-            channels = CHANNELS,
-            rate = RATE,
-            input=True,
-            output=True,
-            frames_per_buffer=self.CHUNK
-        )        
         
-        self._plot_ref = None
+        # Set the window flags to be frameless, not frameless for demo
+        #self.setWindowFlags(Qt.FramelessWindowHint)
+        
+        self.page_index = 0
+        self.dial_index = 0
 
-        self.threadpool = QThreadPool()
-        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
-
-        self.x = np.arange(0,2*self.CHUNK,2)
-        self.line, = self.canvas.axes.plot(self.x, np.random.rand(self.CHUNK),'r')
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=150)
-        self.canvas.axes.set_ylim(-20000,20000)
-        self.canvas.axes.ser_xlim = (0,self.CHUNK)
+        self.filter_on = True
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
-        self.ui.gridLayout_plot.addWidget(self.canvas)
-
+        
         self.ui_init()
 
-        # Setup a timer to trigger the redraw by calling update_plot.
-        self.timer = QTimer()
-        self.timer.setInterval(50)
-        self.timer.timeout.connect(self.update_plot)
-        #self.timer.timeout.connect(print("update"))
-        self.timer.start()
+        self.uart_data_received.connect(self.update_uart_data)
 
-    def update_plot(self):
-        worker = Worker(self.update_plot)
+        self.uart_thread = UartThread()
+        self.uart_thread.uart_data_received.connect(self.uart_data_received.emit)
+        self.uart_thread.start()
 
-        if(self.ui.stackedWidget_content.currentIndex() == 2):
-            data = self.stream.read(self.CHUNK)
-            ydata = struct.unpack(str(self.CHUNK) + 'h', data)
+        self.audio_thread = AudioThread()
+        self.audio_thread.start()
 
-            if self._plot_ref is None:
-                # First time we have no plot reference, so do a normal plot.
-                # .plot returns a list of line <reference>s, as we're
-                # only getting one we can take the first element.
-                plot_refs = self.canvas.axes.plot(self.x, ydata, 'r')
-                self._plot_ref = plot_refs[0]
+    def update_uart_data(self,data):
+        print("UART Data Received:", data)
+        self.ui.label_UART_in.setText(data)
+        if data == 'U':
+            self.page_select('U')
+            print("Page Index: ",self.page_index)
+        elif data == 'D':
+            self.page_select('D')
+            print("Page Index: ",self.page_index)
+        elif data == 'L':
+            self.dial_select('L')
+        elif data == 'R':
+            self.dial_select('R')
+        elif data =='C':
+             sys.exit(app.exec_())
+        else:
+            self.dial_update(int(data))
+
+    def update_dial_labels(self):
+        labels = [self.ui.label_bass, self.ui.label_mid, self.ui.label_treb, self.ui.label_vol]
+        for index, label in enumerate(labels):
+            if index == self.dial_index:
+                label.setStyleSheet("QLabel { color : red; }")
             else:
-                # We have a reference, we can use it to update the data for that line.
-                self._plot_ref.set_ydata(ydata)        
+                label.setStyleSheet("QLabel { color : black; }")
+    
+    def update_page_buttons(self):
+        buttons = [self.ui.pushButton_home, self.ui.pushButton_eq, self.ui.pushButton_vis, self.ui.pushButton_stats]
+        for index, button in enumerate(buttons):
+            if index == self.page_index:
+                button.setStyleSheet("QPushButton { color : red; }")
+            else:
+                button.setStyleSheet("QPushButton { color : black; }")
 
-            # Trigger the canvas to update and redraw.
-            self.canvas.draw()
+    def page_select(self, direction):
+        if direction == 'U':
+            self.page_index = (self.page_index - 1) % 4
+            self.ui.stackedWidget_content.setCurrentIndex(self.page_index)
 
-    def home_widget(self):
-        print("Hello I am Home")
-        self.ui.stackedWidget_content.setCurrentIndex(0)
+        elif direction == 'D':
+            self.page_index = (self.page_index + 1) % 4
+            self.ui.stackedWidget_content.setCurrentIndex(self.page_index)
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            self.update_dial_labels()
+        self.update_page_buttons()
 
-    def eq_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(1)
+    def dial_select(self,direction):
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            if direction == 'L':
+                self.dial_index = (self.dial_index - 1) % 4
+            elif direction == 'R':
+                self.dial_index = (self.dial_index + 1) % 4
+            print("Dial Index: ",self.dial_index)
+            self.update_dial_labels()
 
-    def vis_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(2)
-        
-    def stat_widget(self):
-        self.ui.stackedWidget_content.setCurrentIndex(3)
+    def dial_update(self, value):
+        if self.ui.stackedWidget_content.currentIndex() == 1:
+            if self.dial_index == 0:
+                self.ui.dial_bass.setValue(value)
+            elif self.dial_index == 1:
+                self.ui.dial_mid.setValue(value)
+            elif self.dial_index == 2:
+                self.ui.dial_treb.setValue(value)
+            elif self.dial_index == 3:
+                self.ui.dial_vol.setValue(value)
+                volume = int((value/15.0) * 100)
+                print(f'pactl set-source-volume alsa_input.platform-sound.HiFi__hw_0_1__source {volume}%')
+                os.system(f'pactl set-source-volume alsa_input.platform-sound.HiFi__hw_0_1__source {volume}%')
     
     def reset_widget(self):
         self.ui.main_count.display(0)
@@ -147,46 +122,23 @@ class MainWindow(QMainWindow):
         self.ui.nasty_count.display(0)
         self.ui.d_blocked_count.display(0)
 
+    def toggle_filter(self):
+        self.filter_on = not self.filter_on
+                
     def ui_init(self):
         self.ui.stackedWidget_content.setCurrentIndex(0)
         self.ui.label_enabled.setHidden(True)
-        self.ui.pushButton_home.clicked.connect(self.home_widget)
-        self.ui.pushButton_eq.clicked.connect(self.eq_widget)
-        self.ui.pushButton_vis.clicked.connect(self.vis_widget)
-        self.ui.pushButton_stats.clicked.connect(self.stat_widget)
-        self.ui.reset_stats.clicked.connect(self.reset_widget)
-
-class bm_config():
-
-    def __init__(self):
-        self.settings_file = 'bm_config'
-    
-    def load_settings():
-        if os.path.exists(bm_config_file):
-            with open(settings_file,'r') as f:
-                return json.load(f)
-        else:
-            print('config not found')
-            return {}
-    
-    def save_settings(settings):
-        with open(settings_file, 'w') as f:
-            json.dump(settings, f, indent=4)
-
-    def get_setting(key, default=None):
-        settings = load_settings()
-        return settings.get(key, default)
-
-    def set_setting(key, value):
-        settings = load_settings()
-        settings[key] = value
-        save_settings(settings)
+        #self.ui.pushButton_home.clicked.connect(self.home_widget)
+        #self.ui.pushButton_eq.clicked.connect(self.eq_widget)
+        #self.ui.pushButton_vis.clicked.connect(self.vis_widget)
+        #self.ui.pushButton_stats.clicked.connect(self.stat_widget)
+        #self.ui.reset_stats.clicked.connect(self.reset_widget)
+        self.ui.pushButton_pato.clicked.connect(self.toggle_filter)
+        self.update_page_buttons()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
-    config = bm_config()
     widget.show()
     widget.showMaximized()
     sys.exit(app.exec_())
-
